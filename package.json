@@ -1,0 +1,37 @@
+{
+  "name": "vue-starter",
+  "version": "1.0.0",
+  "description": "Vue application development starter pack",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run clean && npm run webpack-dev",
+    "build": "npm run clean && npm run webpack-build",
+    "clean": "node task/clean",
+    "webpack-build": "NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.prod.config.js",
+    "webpack-dev": "NODE_ENV=development webpack-dev-server --https --inline --hot --colors --config ./config/webpack.dev.config.js",
+    "test": "karma start config/karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/widatama/vue-starter.git"
+  },
+  "keywords": [
+    "vue",
+    "starter"
+  ],
+  "author": "Danu Widatama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/widatama/vue-starter/issues"
+  },
+  "homepage": "https://gitlab.com/widatama/vue-starter#README",
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  }
+}
