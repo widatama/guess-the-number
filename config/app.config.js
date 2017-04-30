@@ -1,10 +1,11 @@
-/* All path is from app root */
+// All paths are from app root
 
 const config = {
   distPath: 'public',
-  appPath: 'app',
-  templatePath: 'app/templates',
+  srcPath: 'src',
+  templatePath: 'src/templates',
   configPath: 'config',
+  appTitle: 'Vue App',
 };
 
 module.exports = config;
