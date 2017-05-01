@@ -1,7 +1,7 @@
 {
-  "name": "vue-starter",
-  "version": "1.0.0",
-  "description": "Vue application development starter pack",
+  "name": "nub",
+  "version": "0.0.1",
+  "description": "Web application development starter pack",
   "main": "index.js",
   "scripts": {
     "start": "npm run clean && npm run webpack-dev",

@@ -5,7 +5,7 @@ const config = {
   srcPath: 'src',
   templatePath: 'src/templates',
   configPath: 'config',
-  appTitle: 'Vue App',
+  appTitle: 'Nub',
 };
 
 module.exports = config;
