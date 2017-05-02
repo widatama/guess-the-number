@@ -1,15 +1,21 @@
 const path = require('path');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const appConfig = require('./app.config');
 
 const environment = process.env.NODE_ENV;
 
+const copyWebpackPluginPatterns = [{
+  from: `${appConfig.paths.src.imagesPath}`,
+  to: `${appConfig.paths.dist.imagesPath}`,
+}];
+
 const htmlWebpackPluginConfig = {
-  title: appConfig.appTitle,
-  template: `!!pug-loader!${appConfig.templatePath}/index.pug`,
+  title: appConfig.title,
+  template: `${appConfig.paths.src.templatePath}/index.pug`,
   environment,
 };
 
@@ -18,7 +24,7 @@ if (environment !== 'development') {
 }
 
 module.exports = {
-  context: path.resolve('', `./${appConfig.srcPath}`),
+  context: path.resolve('', `./${appConfig.paths.src.path}`),
   entry: {
     app: './javascripts/main.js',
   },
@@ -28,13 +34,18 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           use: 'css-loader',
-          publicPath: `/${appConfig.distPath}`,
+          publicPath: `/${appConfig.paths.dist}`,
         }),
+      },
+      {
+        test: /\.pug$/,
+        use: ['pug-loader'],
       },
     ],
   },
   plugins: [
+    new CopyWebpackPlugin(copyWebpackPluginPatterns),
+    new ExtractTextPlugin(`${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}`),
     new HtmlWebpackPlugin(htmlWebpackPluginConfig),
-    new ExtractTextPlugin('assets/stylesheets/[name].bundle.css'),
   ],
 };

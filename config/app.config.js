@@ -5,7 +5,28 @@ const config = {
   srcPath: 'src',
   templatePath: 'src/templates',
   configPath: 'config',
-  appTitle: 'Nub',
+  title: 'Nub',
+  bundleNames: {
+    js: '[name].bundle.js',
+    css: '[name].bundle.css',
+    images: '[name].[ext]',
+  },
+  paths: {
+    config: 'config',
+    src: {
+      path: 'src',
+      templatePath: 'templates',
+      javascriptsPath: 'javascripts',
+      stylesheetsPath: 'stylesheets',
+      imagesPath: 'images',
+    },
+    dist: {
+      path: 'public',
+      javascriptsPath: 'assets/javascripts',
+      stylesheetsPath: 'assets/stylesheets',
+      imagesPath: 'assets/images',
+    },
+  },
 };
 
 module.exports = config;
