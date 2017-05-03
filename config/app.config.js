@@ -18,6 +18,9 @@ const config = {
       templatePath: 'templates',
       javascriptsPath: 'javascripts',
       stylesheetsPath: 'stylesheets',
+    },
+    asset: {
+      path: 'assets',
       imagesPath: 'images',
     },
     dist: {

@@ -9,8 +9,9 @@ const appConfig = require('./app.config');
 const environment = process.env.NODE_ENV;
 
 const copyWebpackPluginPatterns = [{
-  from: `${appConfig.paths.src.imagesPath}`,
+  from: `${appConfig.paths.asset.imagesPath}`,
   to: `${appConfig.paths.dist.imagesPath}`,
+  context: path.resolve('', `./${appConfig.paths.asset.path}`),
 }];
 
 const htmlWebpackPluginConfig = {
