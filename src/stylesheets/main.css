@@ -1,6 +1,10 @@
+@import "normalize.css";
+
 body {
   display: flex;
   flex-direction: column;
+
+  padding: 1em;
 }
 
 #page {
