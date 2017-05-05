@@ -3,6 +3,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
 
 const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
@@ -26,12 +27,16 @@ const htmlWebpackPluginConfig = {
 
 if (environment !== 'development') {
   htmlWebpackPluginConfig.excludeChunks = ['dev'];
+  htmlWebpackPluginConfig.excludeAssets = [/dev/];
+} else {
+  htmlWebpackPluginConfig.excludeAssets = [/appcss.*.js/, /devcss.*.js/];
 }
 
 module.exports = {
   context: path.resolve('', `./${appConfig.paths.src.path}`),
   entry: {
-    app: './javascripts/main.js',
+    appjs: './javascripts/main.js',
+    appcss: './stylesheets/main.css',
   },
   module: {
     rules: [
@@ -68,5 +73,6 @@ module.exports = {
     new CopyWebpackPlugin(copyWebpackPluginPatterns),
     new ExtractTextPlugin(`${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}`),
     new HtmlWebpackPlugin(htmlWebpackPluginConfig),
+    new HtmlWebpackExcludeAssetsPlugin(),
   ],
 };

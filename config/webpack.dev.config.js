@@ -3,7 +3,8 @@ const path = require('path');
 const webpackConfig = require('./webpack.config');
 const appConfig = require('./app.config');
 
-webpackConfig.entry.dev = './javascripts/dev.js';
+webpackConfig.entry.devjs = './javascripts/dev.js';
+webpackConfig.entry.devcss = './stylesheets/dev.css';
 
 webpackConfig.output = {
   path: path.resolve('', `./${appConfig.paths.dist.path}`),
