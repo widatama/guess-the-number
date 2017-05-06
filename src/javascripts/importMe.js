@@ -1,3 +1,4 @@
-const test = 'main bundle loaded';
+const text = 'main'
+const test = `${text} bundle loaded`;
 
 export default test;

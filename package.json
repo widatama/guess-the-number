@@ -13,18 +13,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/widatama/vue-starter.git"
+    "url": "git+https://gitlab.com/widatama/nub.git"
   },
   "keywords": [
-    "vue",
+    "web",
+    "application",
     "starter"
   ],
   "author": "Danu Widatama",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/widatama/vue-starter/issues"
+    "url": "https://gitlab.com/widatama/nub/issues"
   },
-  "homepage": "https://gitlab.com/widatama/vue-starter#README",
+  "homepage": "https://gitlab.com/widatama/nub#README",
   "babel": {
     "presets": [
       "es2015",
@@ -35,6 +36,11 @@
     ]
   },
   "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
@@ -51,6 +57,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "babel-runtime": "^6.23.0",
     "normalize.css": "^7.0.0",
     "tachyons": "^4.7.1"
   }

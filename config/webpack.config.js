@@ -67,6 +67,11 @@ module.exports = {
         test: /\.pug$/,
         use: ['pug-loader'],
       },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   plugins: [
