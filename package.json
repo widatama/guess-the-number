@@ -51,6 +51,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "tachyons": "^4.7.1"
   }
 }

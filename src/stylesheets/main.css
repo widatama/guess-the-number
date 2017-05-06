@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "tachyons/css/tachyons.css";
 
 body {
   display: flex;
