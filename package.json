@@ -28,7 +28,12 @@
   "homepage": "https://gitlab.com/widatama/nub#README",
   "babel": {
     "presets": [
-      ["es2015", {"modules": false}],
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
       "stage-0"
     ],
     "plugins": [
@@ -46,6 +51,12 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-exclude-assets-plugin": "0.0.5",
     "html-webpack-plugin": "^2.28.0",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-detect-browsers": "^2.2.5",
+    "karma-tap": "^3.1.1",
+    "karma-tap-pretty-reporter": "^3.0.5",
+    "karma-webpack": "^2.0.3",
     "optimize-css-assets-webpack-plugin": "^1.3.1",
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",
@@ -53,6 +64,8 @@
     "postcss-nested": "^1.0.1",
     "pug": "^2.0.0-beta.12",
     "pug-loader": "^2.3.0",
+    "tap-summary": "^3.0.2",
+    "tape": "^4.6.3",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.5"
   },
