@@ -74,6 +74,7 @@ module.exports = {
       },
     ],
   },
+  target: 'web',
   plugins: [
     new CopyWebpackPlugin(copyWebpackPluginPatterns),
     new ExtractTextPlugin(`${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}`),
