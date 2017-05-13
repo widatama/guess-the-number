@@ -5,7 +5,7 @@ const config = {
   srcPath: 'src',
   templatePath: 'src/templates',
   configPath: 'config',
-  title: 'Nub',
+  title: 'Guess The Number',
   bundleNames: {
     js: '[name].bundle.js',
     css: '[name].bundle.css',

@@ -1,8 +1,7 @@
 {
-  "name": "nub",
+  "name": "guess-the-number",
   "version": "0.0.1",
-  "description": "Web application development starter pack",
-  "main": "index.js",
+  "description": "Guess the number game",
   "scripts": {
     "start": "npm run clean && npm run webpack-dev",
     "build": "npm run clean && npm run webpack-build",
@@ -18,14 +17,14 @@
   "keywords": [
     "web",
     "application",
-    "starter"
+    "number",
+    "guesssing"
   ],
   "author": "Danu Widatama",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/widatama/nub/issues"
+    "url": "https://github.com/widatama/guess-the-number/issues"
   },
-  "homepage": "https://gitlab.com/widatama/nub#README",
   "babel": {
     "presets": [
       [
