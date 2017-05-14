@@ -1,5 +1,7 @@
 const path = require('path');
 
+const Webpack = require('webpack');
+
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -72,11 +74,20 @@ module.exports = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader',
+      },
     ],
   },
   target: 'web',
   plugins: [
     new CopyWebpackPlugin(copyWebpackPluginPatterns),
+    new Webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(environment),
+      },
+    }),
     new ExtractTextPlugin(`${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}`),
     new HtmlWebpackPlugin(htmlWebpackPluginConfig),
     new HtmlWebpackExcludeAssetsPlugin(),
