@@ -33,7 +33,9 @@ function generateRandomNumber(numberLengthInput = 1) {
   while (numberArr.length < numberLengthInput) {
     const randomNumber = randomNumberBetweenInterval();
 
-    if (!numberStructure[randomNumber]) {
+    console.log(randomNumber, numberStructure);
+
+    if (numberStructure[randomNumber] === undefined) {
       numberArr.push(randomNumber);
       numberStructure[randomNumber] = numberCount;
 
