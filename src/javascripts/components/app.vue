@@ -1,8 +1,8 @@
 <template lang="pug">
 div
-  | {{msg}}
-  br
   | Guess the number
+
+  router-view
 </template>
 
 <script>
