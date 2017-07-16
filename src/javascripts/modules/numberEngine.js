@@ -1,4 +1,5 @@
 const DEFAULT_NUMBER_LENGTH = 4;
+const AVAILABLE_NUMBER_LENGTH = [4, 5, 6, 7, 8];
 
 function isValidNumber(numberInput) {
   // check valid type
@@ -32,8 +33,6 @@ function generateRandomNumber(numberLengthInput = 1) {
 
   while (numberArr.length < numberLengthInput) {
     const randomNumber = randomNumberBetweenInterval();
-
-    console.log(randomNumber, numberStructure);
 
     if (numberStructure[randomNumber] === undefined) {
       numberArr.push(randomNumber);
@@ -121,6 +120,10 @@ class NumberEngine {
       correctNumber,
       correctPosition,
     };
+  }
+
+  static availableNumberLength() {
+    return AVAILABLE_NUMBER_LENGTH;
   }
 }
 

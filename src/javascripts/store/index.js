@@ -5,7 +5,8 @@ import NumberEngine from '../modules/numberEngine';
 const store = new Vuex.Store({
   state: {
     numberToGuess: {},
-    numberLength: 4,
+    numberLength: Math.min(...NumberEngine.availableNumberLength()),
+    availableNumberLength: NumberEngine.availableNumberLength(),
     guesses: [],
     guessed: false,
   },
@@ -18,8 +19,10 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    generateNumber({ commit, state }) {
+    generateNumber({ commit, state }, chosenNumberLength) {
       const numberObj = new NumberEngine();
+
+      commit('UPDATE_VARIABLE', { label: 'numberLength', value: chosenNumberLength });
 
       numberObj.generateNumber(state.numberLength);
 
@@ -44,6 +47,11 @@ const store = new Vuex.Store({
         && guessObj.correctPosition === state.numberLength) {
         commit('UPDATE_VARIABLE', { label: 'guessed', value: true });
       }
+    },
+    restart({ commit }) {
+      commit('UPDATE_VARIABLE', { label: 'guessed', value: false });
+      commit('UPDATE_VARIABLE', { label: 'guesses', value: [] });
+      commit('UPDATE_VARIABLE', { label: 'numberToGuess', value: {} });
     },
   },
 });
