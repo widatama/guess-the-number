@@ -13,7 +13,7 @@ div
 
   template(v-else)
     template(v-if="isPlaying")
-      input(v-model="currentGuessInput", v-on:keyup.enter="guessNumber(currentGuessInput)")
+      input(type="number", v-model="currentGuessInput", v-on:keypress="inputNumber($event)")
 
     template(v-if="isFinished")
       | You Win, {{guesses.length}} Guesses
@@ -37,6 +37,12 @@ div
 
 <script>
 import { mapState } from 'vuex';
+
+function hasCharCode(str, charCode) {
+  const strFromCharCode = String.fromCharCode(charCode);
+
+  return str.includes(strFromCharCode);
+}
 
 export default {
   name: 'v-game-board',
@@ -73,6 +79,15 @@ export default {
       this.$store.dispatch('generateNumber', chosenNumberLength || this.numberLength);
 
       this.currentGameStatus = 'play';
+    },
+    inputNumber(event) {
+      if (event.charCode === 13 && this.currentGuessInput.length === this.numberLength) {
+        this.guessNumber(this.currentGuessInput);
+      } else if (event.charCode < 48 || event.charCode > 57 || this.currentGuessInput.length >= this.numberLength || hasCharCode(this.currentGuessInput, event.charCode)) {
+        event.preventDefault();
+        
+        return;
+      }
     },
     guessNumber(guessInput) {
       this.$store.dispatch('guessNumber', guessInput);
