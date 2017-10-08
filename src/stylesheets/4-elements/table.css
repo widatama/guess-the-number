@@ -1,0 +1,25 @@
+table {
+  border-collapse: collapse;
+}
+
+tbody {
+  box-shadow: 0 1px 0 0 var(--colorGray);
+}
+
+td,
+th {
+  padding: 0;
+}
+
+td {
+  padding: 0 .5rem;
+  box-shadow: 0 -1px 0 0 var(--colorGray);
+  font-size: .75em;
+  line-height: 2.675;
+}
+
+th {
+  padding: 0 .5rem;
+  font-weight: var(--fontWeightBase);
+  font-variant: all-small-caps;
+}

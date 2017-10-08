@@ -1,42 +1,42 @@
 <template lang="pug">
-div
-  | Game Board
-  br
-
-  router-link(to="/guide") Guide
-
-  template(v-if="isSettingUp")
-    select(v-model="numberLength", v-on:change="chooseNumberLength($event)")
-      template(v-for="item in availableNumberLength")
-        option(v-bind:value="item") {{item}}
-    button(v-on:click="startGame(numberLengthInput)") Start
+div.c-game-board
+  .c-game-board-setup(v-if="isSettingUp")
+    div
+      | How many digits can you guess?&emsp;
+      select.c-select(v-model="numberLength", v-on:change="chooseNumberLength($event)")
+        template(v-for="item in availableNumberLength")
+          option(v-bind:value="item") {{item}}
+    div
+      button.c-button.u-fill(v-on:click="startGame(numberLengthInput)") Start
 
   template(v-else)
-    template(v-if="isPlaying")
-      input(type="number", v-model="currentGuessInput", v-on:keypress="inputNumber($event)")
+    .c-game-board-meta
+      | {{numberLength}} Digits
+    .c-game-board-guess-input-field(v-if="isPlaying")
+      div
+        input.c-input.u-fill(placeholder="Type your guess…", v-model="currentGuessInput", v-on:keypress="inputNumber($event)")
+      button.c-button.u-fill(v-bind:disabled="!guessInputValid", v-on:click="guessNumber(currentGuessInput)") Submit
 
-    template(v-if="isFinished")
-      | You Win, {{guesses.length}} Guesses
+    .c-game-board-finished(v-if="isFinished")
+      div
+        strong
+          | You win!
+          | &nbsp;{{guesses.length}}&nbsp;
+          template(v-if="guesses.length === 1")
+            | Guess
+          template(v-else)
+            | Guesses
 
-      button(v-on:click="setupGame") New Game
+      button.c-button.u-fill(v-on:click="setupGame") New Game
 
-    table
-      thead
-        tr
-          th Guess
-          th Digit
-          th Position
-      tbody
-        tr(v-for="guess in guesses")
-          td {{guess.guessInput}}
-          td {{guess.correctNumber}}
-          td {{guess.correctPosition}}
-
+    .c-game-board-guesses
+      v-guess-table(v-bind:guesses="guesses", v-if="guesses.length > 0")
 
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import GuessTable from '../game_board/guess_table.vue';
 
 function hasCharCode(str, charCode) {
   const strFromCharCode = String.fromCharCode(charCode);
@@ -46,6 +46,9 @@ function hasCharCode(str, charCode) {
 
 export default {
   name: 'v-game-board',
+  components: {
+    'v-guess-table': GuessTable,
+  },
   computed: {
     isSettingUp() {
       return this.gameStatuses[0] === this.currentGameStatus;
@@ -55,6 +58,9 @@ export default {
     },
     isFinished() {
       return this.gameStatuses[2] === this.currentGameStatus;
+    },
+    guessInputValid() {
+      return this.currentGuessInput.length === this.numberLength;
     },
     ...mapState([
       'numberLength',

@@ -1,0 +1,20 @@
+html {
+  background-color: var(--backgroundColorBase);
+
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase);
+  font-weight: var(--fontWeightBase);
+  line-height: var(--lineHeightBase);
+
+  overflow-y: scroll;
+
+  min-height: 100%;
+
+  color: var(--colorBase);
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}

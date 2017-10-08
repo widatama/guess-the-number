@@ -1,8 +1,10 @@
 <template lang="pug">
-div
-  | Guess the number
+.c-app-container
+  header.c-app-header
+    h1.c-app-title Guess The Number
 
-  router-view
+  main.c-app-content
+    router-view
 </template>
 
 <script>
