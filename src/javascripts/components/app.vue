@@ -9,11 +9,6 @@
 
 <script>
 export default {
-  name: 'guess-the-number',
-  data() {
-    return {
-      msg: "Hello",
-    };
-  },
+  name: 'v-app-container',
 };
 </script>

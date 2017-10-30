@@ -1,5 +1,5 @@
 <template lang="pug">
-div.c-game-board
+.c-game-board
   .c-game-board-setup(v-if="isSettingUp")
     div
       | How many digits can you guess?&emsp;
@@ -32,6 +32,9 @@ div.c-game-board
     .c-game-board-guesses
       v-guess-table(v-bind:guesses="guesses", v-if="guesses.length > 0")
 
+  div
+    router-link(to="/guide") Guide
+
 </template>
 
 <script>
@@ -51,18 +54,19 @@ export default {
   },
   computed: {
     isSettingUp() {
-      return this.gameStatuses[0] === this.currentGameStatus;
+      return !this.numberToGuess.raw;
     },
     isPlaying() {
-      return this.gameStatuses[1] === this.currentGameStatus;
+      return this.numberToGuess.raw && !this.guessed;
     },
     isFinished() {
-      return this.gameStatuses[2] === this.currentGameStatus;
+      return this.guessed;
     },
     guessInputValid() {
       return this.currentGuessInput.length === this.numberLength;
     },
     ...mapState([
+      'numberToGuess',
       'numberLength',
       'availableNumberLength',
       'guesses',
@@ -73,8 +77,6 @@ export default {
     return {
       currentGuessInput: '',
       numberLengthInput: 0,
-      gameStatuses: ['setup', 'play', 'finished'],
-      currentGameStatus: 'setup',
     };
   },
   methods: {
@@ -83,8 +85,6 @@ export default {
     },
     startGame(chosenNumberLength) {
       this.$store.dispatch('generateNumber', chosenNumberLength || this.numberLength);
-
-      this.currentGameStatus = 'play';
     },
     inputNumber(event) {
       if (event.charCode === 13 && this.currentGuessInput.length === this.numberLength) {
@@ -98,14 +98,8 @@ export default {
     guessNumber(guessInput) {
       this.$store.dispatch('guessNumber', guessInput);
       this.currentGuessInput = '';
-
-      if (this.guessed) {
-        this.currentGameStatus = 'finished';
-      }
     },
     setupGame() {
-      this.currentGameStatus = 'setup';
-
       this.$store.dispatch('restart');
     },
   },
