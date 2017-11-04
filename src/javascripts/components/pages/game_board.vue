@@ -1,5 +1,5 @@
 <template lang="pug">
-.c-game-board
+.c-game-board(v-if="initialized")
   .c-game-board-setup(v-if="isSettingUp")
     div
       | How many digits can you guess?&emsp;
@@ -71,6 +71,7 @@ export default {
       'availableNumberLength',
       'guesses',
       'guessed',
+      'initialized',
     ]),
   },
   data: () => {

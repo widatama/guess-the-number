@@ -115,6 +115,10 @@
   }
 }
 
+[v-cloak] {
+  display: none;
+}
+
 .u-txt--monospace {
   font-family: var(--fontFamilyMonospace);
 }

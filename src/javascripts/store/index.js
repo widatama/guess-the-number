@@ -1,16 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import NumberEngine from '../modules/numberEngine';
+import GameState from '../modules/gameState';
 
 const store = new Vuex.Store({
-  state: {
-    numberToGuess: {},
-    numberLength: Math.min(...NumberEngine.availableNumberLength()),
-    availableNumberLength: NumberEngine.availableNumberLength(),
-    guesses: [],
-    guessed: false,
-  },
+  state: Object.assign({ initialized: false }, GameState.default()),
+  plugins: [GameState.storagePlugin],
   mutations: {
+    INITIALIZE(state, initialState) {
+      Object.assign(state, initialState);
+    },
     UPDATE_VARIABLE(state, { label, value }) {
       Vue.set(state, label, value);
     },
@@ -19,13 +18,17 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    generateNumber({ commit, state }, chosenNumberLength) {
+    initialize({ commit }) {
+      GameState.init().then((initialState) => {
+        commit('INITIALIZE', initialState);
+        commit('UPDATE_VARIABLE', { label: 'initialized', value: true });
+      });
+    },
+    generateNumber({ commit }, chosenNumberLength) {
       const numberObj = new NumberEngine();
+      numberObj.generateNumber(chosenNumberLength);
 
       commit('UPDATE_VARIABLE', { label: 'numberLength', value: chosenNumberLength });
-
-      numberObj.generateNumber(state.numberLength);
-
       commit('UPDATE_VARIABLE', { label: 'numberToGuess', value: numberObj.numberToGuess });
     },
     guessNumber({ commit, state }, guessInput) {
