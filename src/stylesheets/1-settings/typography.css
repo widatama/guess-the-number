@@ -8,6 +8,7 @@
 
 :root {
   --fontSizeBase: 100%;
+  --fontSizeSmall: 75%;
 
   --fontFamilyBase: "system";
   --fontFamilyMonospace: Monaco, Consolas, "Dejavu Mono", monospace;

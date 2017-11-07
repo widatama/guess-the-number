@@ -2,7 +2,9 @@
   --backgroundColorBase: #ffffff;
 
   --colorBase: #333;
-  --colorGray: #ccc;
+  --colorGray: #bbb;
+
+  --colorLink: #0c3a8d;
 
   --distanceUnit: 18px;
 }

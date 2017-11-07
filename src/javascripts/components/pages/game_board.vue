@@ -32,8 +32,13 @@
     .c-game-board-guesses
       v-guess-table(v-bind:guesses="guesses", v-if="guesses.length > 0")
 
-  div
-    router-link(to="/guide") Guide
+  footer.c-app-footer
+    nav
+      ul.c-nav-list
+        li.c-nav-list__item
+          router-link(to="/guide") Guide
+        li.c-nav-list__item(v-if="isPlaying", @click="setupGame")
+          router-link(to="/") New Game
 
 </template>
 

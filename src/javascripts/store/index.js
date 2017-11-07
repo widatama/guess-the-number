@@ -51,7 +51,8 @@ const store = new Vuex.Store({
         commit('UPDATE_VARIABLE', { label: 'guessed', value: true });
       }
     },
-    restart({ commit }) {
+    restart({ commit, state }) {
+      commit('UPDATE_VARIABLE', { label: 'numberLength', value: Math.min(...state.availableNumberLength) });
       commit('UPDATE_VARIABLE', { label: 'guessed', value: false });
       commit('UPDATE_VARIABLE', { label: 'guesses', value: [] });
       commit('UPDATE_VARIABLE', { label: 'numberToGuess', value: {} });

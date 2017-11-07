@@ -4,7 +4,7 @@ div
    | This is a simple guess the number game. Given&nbsp;
    code n
    |  digits of unique number,
-   strong  your task is to guess the correct digit for each position
+   strong  your goal is to guess the correct digit for each position
    | .
   p
    | Every time you guess, there will be a response of&nbsp;
@@ -24,12 +24,16 @@ div
      |  equals&nbsp;
      code n
      | .
-  p
-    router-link(to="/game")
-      template(v-if="numberToGuess.raw")
-        | Continue Game
-      template(v-else)
-        | New Game
+
+  footer.c-app-footer
+    nav
+      ul.c-nav-list
+        li.c-nav-list__item
+          router-link(to="/")
+            template(v-if="numberToGuess.raw")
+              | Continue Game
+            template(v-else)
+              | New Game
     
 </template>
 

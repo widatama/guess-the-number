@@ -3,6 +3,7 @@
 @import "1-settings/base.css";
 @import "1-settings/typography.css";
 
+@import "4-elements/link.css";
 @import "4-elements/page.css";
 @import "4-elements/table.css";
 
@@ -31,7 +32,7 @@
 
 .c-game-board-setup {
   display: grid;
-  grid-template-columns: 80% auto;
+  grid-template-columns: 75% auto;
 }
 
 .c-game-board-meta {
@@ -41,12 +42,12 @@
 
 .c-game-board-guess-input-field {
   display: grid;
-  grid-template-columns: 80% auto;
+  grid-template-columns: 75% auto;
 }
 
 .c-game-board-finished {
   display: grid;
-  grid-template-columns: 80% auto;
+  grid-template-columns: 75% auto;
 }
 
 .c-game-board-guesses {
@@ -88,19 +89,19 @@
   padding: 0 .5rem;
   border-radius: 0;
   border: none;
-  box-shadow: inset 1px 0 0 0 var(--colorGray),
-              inset -1px 0 0 0 var(--colorGray),
-              inset 0 1px 0 0 var(--colorGray),
-              inset 0 -1px 0 0 var(--colorGray);
+  border: 1px solid var(--colorGray);
   cursor: pointer;
+  color: var(--colorLink);
+  outline-width: thin;
 
   font-weight: var(--fontWeightBold);
 
   transition: color .2s ease-in-out, background-color .2s ease-in-out;
 
   &:hover {
-    background-color: var(--colorGray);
-    color: var(--backgroundColorBase)
+    background-color: var(--colorLink);
+    color: var(--backgroundColorBase);
+    border-color: var(--colorLink);
   }
 
   &[disabled] {
@@ -113,6 +114,24 @@
       background-color: var(--backgroundColorBase);
     }
   }
+}
+
+.c-app-footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--colorGray);
+}
+
+.c-nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-nav-list__item {
+  margin: 0 1rem 0 0;
+  padding: 0;
+  font-size: var(--fontSizeSmall);
+  display: inline-block;
 }
 
 [v-cloak] {
