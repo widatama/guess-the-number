@@ -3,6 +3,7 @@
 @import "1-settings/base.css";
 @import "1-settings/typography.css";
 
+@import "4-elements/body.css";
 @import "4-elements/link.css";
 @import "4-elements/page.css";
 @import "4-elements/table.css";
@@ -12,46 +13,54 @@
 }
 
 .c-app-container {
-  padding: 2rem;
+  padding: 3rem 1.5rem;
   display: grid;
-  max-width: 30rem;
+  max-width: 35rem;
+  height: 100%;
   margin: 0 auto;
-}
-
-.c-app-header {
-  margin-bottom: 2rem;
+  grid-template-rows: 20% auto;
+  justify-items: stretch;
 }
 
 .c-app-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1rem;
   margin: 0;
   padding: 0;
-  text-align: center;
+  font-weight: 200;
+  letter-spacing: .15rem;
+  font-variant: all-small-caps;
+}
+
+.c-app-content {
+  height: 100%;
+}
+
+.c-game-board {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 10%;
 }
 
 .c-game-board-setup {
   display: grid;
-  grid-template-columns: 75% auto;
-}
-
-.c-game-board-meta {
-  margin-bottom: 1rem;
-  text-align: center;
+  grid-template-columns: 62% 14% auto;
+  grid-column-gap: .25rem;
 }
 
 .c-game-board-guess-input-field {
   display: grid;
-  grid-template-columns: 75% auto;
+  grid-template-columns: 20% 55% auto;
+  grid-column-gap: .25rem;
 }
 
 .c-game-board-finished {
   display: grid;
-  grid-template-columns: 75% auto;
+  grid-template-columns: 68% auto;
 }
 
 .c-game-board-guesses {
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .c-input,
@@ -117,8 +126,8 @@
 }
 
 .c-app-footer {
-  margin-top: 4rem;
   border-top: 1px solid var(--colorGray);
+  align-self: end;
 }
 
 .c-nav-list {
@@ -128,9 +137,8 @@
 }
 
 .c-nav-list__item {
-  margin: 0 1rem 0 0;
+  margin: 0 1.5rem 0 0;
   padding: 0;
-  font-size: var(--fontSizeSmall);
   display: inline-block;
 }
 

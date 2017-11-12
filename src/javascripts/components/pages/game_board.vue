@@ -1,43 +1,46 @@
 <template lang="pug">
 .c-game-board(v-if="initialized")
-  .c-game-board-setup(v-if="isSettingUp")
-    div
-      | How many digits can you guess?&emsp;
-      select.c-select(v-model="numberLength", v-on:change="chooseNumberLength($event)")
-        template(v-for="item in availableNumberLength")
-          option(v-bind:value="item") {{item}}
-    div
+  div
+    .c-game-board-setup(v-if="isSettingUp")
+      div
+        | How many digits to guess?
+
+      div
+        select.c-select.u-fill(v-model="numberLength", v-on:change="chooseNumberLength($event)")
+          template(v-for="item in availableNumberLength")
+            option(v-bind:value="item") {{item}}
+
       button.c-button.u-fill(v-on:click="startGame(numberLengthInput)") Start
 
-  template(v-else)
-    .c-game-board-meta
-      | {{numberLength}} Digits
-    .c-game-board-guess-input-field(v-if="isPlaying")
-      div
-        input.c-input.u-fill(placeholder="Type your guess…", v-model="currentGuessInput", v-on:keypress="inputNumber($event)")
-      button.c-button.u-fill(v-bind:disabled="!guessInputValid", v-on:click="guessNumber(currentGuessInput)") Submit
+    template(v-else)
+      .c-game-board-guess-input-field(v-if="isPlaying")
+        div
+          | {{numberLength}} Digits
+        div
+          input.c-input.u-fill(placeholder="Type your guess…", v-model="currentGuessInput", v-on:keypress="inputNumber($event)")
+        button.c-button.u-fill(v-bind:disabled="!guessInputValid", v-on:click="guessNumber(currentGuessInput)") Submit
 
-    .c-game-board-finished(v-if="isFinished")
-      div
-        strong
-          | You win!
-          | &nbsp;{{guesses.length}}&nbsp;
-          template(v-if="guesses.length === 1")
-            | Guess
-          template(v-else)
-            | Guesses
+      .c-game-board-finished(v-if="isFinished")
+        div
+          strong
+            | You win!
+            | &nbsp;{{guesses.length}}&nbsp;
+            template(v-if="guesses.length === 1")
+              | Guess
+            template(v-else)
+              | Guesses
 
-      button.c-button.u-fill(v-on:click="setupGame") New Game
+        button.c-button.u-fill(v-on:click="setupGame") New Game
 
-    .c-game-board-guesses
-      v-guess-table(v-bind:guesses="guesses", v-if="guesses.length > 0")
+      .c-game-board-guesses
+        v-guess-table(v-bind:guesses="guesses", v-if="guesses.length > 0")
 
   footer.c-app-footer
     nav
       ul.c-nav-list
         li.c-nav-list__item
           router-link(to="/guide") Guide
-        li.c-nav-list__item(v-if="isPlaying", @click="setupGame")
+        li.c-nav-list__item(v-if="isPlaying", v-on:click="setupGame")
           router-link(to="/") New Game
 
 </template>
