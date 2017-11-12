@@ -5,7 +5,7 @@
      | This is a simple guess the number game. Given&nbsp;
      code n
      |  digits of unique number,
-     strong  your goal is to guess the correct digit for each position
+     strong  your goal is to guess all the correct digits and their positions
      | .
     p
      | Every time you guess, there will be a response of&nbsp;
