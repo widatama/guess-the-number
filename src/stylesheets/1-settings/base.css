@@ -8,3 +8,7 @@
 
   --distanceUnit: 18px;
 }
+
+* {
+  box-sizing: border-box;
+}

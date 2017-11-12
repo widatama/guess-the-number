@@ -1,0 +1,28 @@
+.c-app-container {
+  padding: 3rem 1.5rem;
+  display: grid;
+  max-width: 35rem;
+  height: 100%;
+  margin: 0 auto;
+  grid-template-rows: 20% auto;
+  justify-items: stretch;
+}
+
+.c-app-title {
+  font-size: 1.25rem;
+  line-height: 1rem;
+  margin: 0;
+  padding: 0;
+  font-weight: 200;
+  letter-spacing: .15rem;
+  font-variant: all-small-caps;
+}
+
+.c-app-content {
+  height: 100%;
+}
+
+.c-app-footer {
+  border-top: 1px solid var(--colorGray);
+  align-self: end;
+}
