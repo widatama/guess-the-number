@@ -6,6 +6,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
+const WebappManifest = require('webapp-manifest-plugin');
+const FaviconWebpackPlugin = require('favicons-webpack-plugin');
+
+const WebappManifestPlugin = WebappManifest.default;
+const WebappManifestIcon = WebappManifest.FAVICON_PLUGIN;
 
 const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
@@ -33,6 +38,20 @@ if (environment !== 'development') {
 } else {
   htmlWebpackPluginConfig.excludeAssets = [/appcss.*.js/, /devcss.*.js/];
 }
+
+const webappManifestPluginConfig = {
+  name: 'Guess the Number',
+  shortName: 'Guess the Number',
+  description: 'A simple guess the number game',
+  dir: 'auto',
+  lang: 'en-US',
+  display: 'standalone',
+  orientation: 'portrait',
+  startUrl: '/',
+  backgroundColor: '#fff',
+  icons: WebappManifestIcon,
+  scope: '/',
+};
 
 module.exports = {
   context: path.resolve('', `./${appConfig.paths.src.path}`),
@@ -91,5 +110,7 @@ module.exports = {
     new ExtractTextPlugin(`${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}`),
     new HtmlWebpackPlugin(htmlWebpackPluginConfig),
     new HtmlWebpackExcludeAssetsPlugin(),
+    new FaviconWebpackPlugin('../assets/images/favicon.png'),
+    new WebappManifestPlugin(webappManifestPluginConfig),
   ],
 };
