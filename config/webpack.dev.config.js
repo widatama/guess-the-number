@@ -15,8 +15,9 @@ webpackConfig.output = {
 webpackConfig.devtool = 'eval-source-map';
 
 webpackConfig.devServer = {
-  hot: true,
   contentBase: `${appConfig.paths.dist.path}/`,
+  inline: true,
+  https: false,
   stats: {
     assets: true,
     chunks: false,

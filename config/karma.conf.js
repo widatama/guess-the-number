@@ -1,5 +1,6 @@
 // we can just use the exact same webpack config by requiring it
 // but make sure to delete the normal entry
+/* eslint import/no-extraneous-dependencies: 0 */
 const webpackConf = require('./webpack.config');
 const karmaChromeLauncher = require('karma-chrome-launcher');
 const karmaTap = require('karma-tap');
@@ -25,10 +26,12 @@ module.exports = (config) => {
     tapReporter: {
       prettifier: 'tap-summary',
     },
-    files: [  // entry file for all tests.
+    // entry file for all tests
+    files: [
       '../test/bundle.js',
     ],
-    preprocessors: { // pass the entry file to webpack for bundling.
+    // pass the entry file to webpack for bundling.
+    preprocessors: {
       '../test/bundle.js': ['webpack'],
     },
     client: {

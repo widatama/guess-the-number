@@ -7,7 +7,7 @@
     "build": "npm run clean && npm run webpack-build",
     "clean": "node task/clean",
     "webpack-build": "NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.prod.config.js",
-    "webpack-dev": "NODE_ENV=development webpack-dev-server --https --inline --hot --colors --config ./config/webpack.dev.config.js",
+    "webpack-dev": "NODE_ENV=development webpack-dev-server --hot --colors --config ./config/webpack.dev.config.js",
     "test": "karma start config/karma.conf.js"
   },
   "repository": {
@@ -71,7 +71,8 @@
     "vue-template-compiler": "^2.4.1",
     "webapp-manifest-plugin": "0.0.4",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.9.7",
+    "workbox-webpack-plugin": "^2.1.2"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
