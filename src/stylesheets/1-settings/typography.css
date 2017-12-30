@@ -10,7 +10,7 @@
   --fontSizeBase: 100%;
   --fontSizeSmall: 75%;
 
-  --fontFamilyBase: "system";
+  --fontFamilyBase: system;
   --fontFamilyMonospace: Monaco, Consolas, "Dejavu Mono", monospace;
 
   --fontWeightBase: 400;
