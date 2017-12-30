@@ -2,10 +2,12 @@
 .c-game-board
   div
     p
-     | This is a simple guess the number game. Given&nbsp;
+     | This is a simple guess the number game. You are given&nbsp;
      code n
-     |  digits of unique number,
-     strong  your goal is to guess all the correct digits and their positions
+     |  digits of unique numbers, each digit could have a value of&nbsp;
+     code 0–9
+     | .
+     strong  Your goal is to guess all the correct digits and their positions
      | .
     p
      | Every time you guess, there will be a response of&nbsp;
