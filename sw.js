@@ -24,7 +24,7 @@ const fileManifest = [
   },
   {
     "url": "assets/javascripts/appjs.bundle.js",
-    "revision": "f9097ddea5cf7d20ba563df173490660"
+    "revision": "6fe252b09d9c452167326d7fcd16c31f"
   },
   {
     "url": "assets/stylesheets/appcss.bundle.css",

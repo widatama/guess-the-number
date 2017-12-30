@@ -31,14 +31,14 @@
       "sizes": "96x96"
     },
     {
-      "src": "icons-f58c89c95152f77ad065f60c6b39597b/android-chrome-144x144.png",
-      "type": "image/png",
-      "sizes": "144x144"
-    },
-    {
       "src": "icons-f58c89c95152f77ad065f60c6b39597b/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "icons-f58c89c95152f77ad065f60c6b39597b/android-chrome-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
     },
     {
       "src": "icons-f58c89c95152f77ad065f60c6b39597b/android-chrome-256x256.png",
