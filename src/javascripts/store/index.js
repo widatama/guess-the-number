@@ -19,7 +19,7 @@ const store = new Vuex.Store({
   },
   actions: {
     initialize({ commit }) {
-      GameState.init().then((initialState) => {
+      GameState.init().then(initialState => {
         commit('INITIALIZE', initialState);
         commit('UPDATE_VARIABLE', { label: 'initialized', value: true });
       });
@@ -46,13 +46,18 @@ const store = new Vuex.Store({
 
       commit('ADD_GUESS', guessObj);
 
-      if (guessObj.correctNumber === state.numberLength
-        && guessObj.correctPosition === state.numberLength) {
+      if (
+        guessObj.correctNumber === state.numberLength &&
+        guessObj.correctPosition === state.numberLength
+      ) {
         commit('UPDATE_VARIABLE', { label: 'guessed', value: true });
       }
     },
     restart({ commit, state }) {
-      commit('UPDATE_VARIABLE', { label: 'numberLength', value: Math.min(...state.availableNumberLength) });
+      commit('UPDATE_VARIABLE', {
+        label: 'numberLength',
+        value: Math.min(...state.availableNumberLength),
+      });
       commit('UPDATE_VARIABLE', { label: 'guessed', value: false });
       commit('UPDATE_VARIABLE', { label: 'guesses', value: [] });
       commit('UPDATE_VARIABLE', { label: 'numberToGuess', value: {} });

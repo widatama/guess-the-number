@@ -2,10 +2,10 @@ import tape from 'tape';
 
 import Engine from './numberEngine';
 
-tape('Number Engine', (test) => {
+tape('Number Engine', test => {
   test.plan(4);
 
-  test.test('Instantiation', (assert) => {
+  test.test('Instantiation', assert => {
     const engine = new Engine();
 
     assert.ok(engine, 'Engine instance created');
@@ -15,7 +15,7 @@ tape('Number Engine', (test) => {
     assert.end();
   });
 
-  test.test('Number generation', (assert) => {
+  test.test('Number generation', assert => {
     const engine = new Engine();
 
     assert.ok(engine.generateNumber(), 'Engine can generate number');
@@ -25,7 +25,7 @@ tape('Number Engine', (test) => {
     assert.end();
   });
 
-  test.test('Number setting', (assert) => {
+  test.test('Number setting', assert => {
     const engine = new Engine();
     const invalidFn0 = () => {
       engine.setNumber();
@@ -49,7 +49,7 @@ tape('Number Engine', (test) => {
     assert.end();
   });
 
-  test.test('Number guessing', (assert) => {
+  test.test('Number guessing', assert => {
     const engine = new Engine();
     const VALID_NUMBER = '8519';
 
@@ -73,7 +73,10 @@ tape('Number Engine', (test) => {
     assert.throws(invalidFn0, 'Guess number argument cannot be empty');
     assert.throws(invalidFn1, 'Guess number argument has to be number');
     assert.throws(invalidFn2, 'Guess number argument has to have unique digits');
-    assert.throws(invalidFn3, 'Guess number argument has to have the same length as number to guess');
+    assert.throws(
+      invalidFn3,
+      'Guess number argument has to have the same length as number to guess',
+    );
 
     assert.end();
   });

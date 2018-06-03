@@ -18,14 +18,13 @@ class GameState {
   static init() {
     const state = DEFAULT_STATE;
 
-    return localforage.getItem(STORAGE_KEY)
-      .then((value) => {
-        if (value) {
-          Object.assign(state, value);
-        }
+    return localforage.getItem(STORAGE_KEY).then(value => {
+      if (value) {
+        Object.assign(state, value);
+      }
 
-        return Promise.resolve(state);
-      });
+      return Promise.resolve(state);
+    });
   }
 
   static storagePlugin(store) {

@@ -5,7 +5,7 @@ function isValidNumber(numberInput) {
   // check valid type
   if (!['number', 'string'].includes(typeof numberInput)) {
     return false;
-  } else if (isNaN(numberInput)) {
+  } else if (Number.isNaN(numberInput)) {
     return false;
   } else if (numberInput.toString().length < 1) {
     return false;
@@ -22,7 +22,7 @@ function isValidNumber(numberInput) {
 }
 
 function randomNumberBetweenInterval(min = 0, max = 9) {
-  return Math.floor((Math.random() * ((max - min) + 1)) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function generateRandomNumber(numberLengthInput = 1) {
@@ -57,7 +57,6 @@ function structurizeNumber(numberInput) {
 
   return structuredNumber;
 }
-
 
 class NumberEngine {
   constructor() {
