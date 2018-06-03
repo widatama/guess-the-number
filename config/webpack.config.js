@@ -1,30 +1,18 @@
 const path = require('path');
 
 const Webpack = require('webpack');
-
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
-const WebappManifest = require('webapp-manifest-plugin');
-const FaviconWebpackPlugin = require('favicons-webpack-plugin');
-
-const WebappManifestPlugin = WebappManifest.default;
-const WebappManifestIcon = WebappManifest.FAVICON_PLUGIN;
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const postcssImport = require('postcss-import');
 const postcssNext = require('postcss-cssnext');
 const postcssNested = require('postcss-nested');
 
-const appConfig = require('./app.config');
-
 const environment = process.env.NODE_ENV;
-
-const copyWebpackPluginPatterns = [{
-  from: `${appConfig.paths.asset.imagesPath}`,
-  to: `${appConfig.paths.dist.imagesPath}`,
-  context: path.resolve('', `./${appConfig.paths.asset.path}`),
-}];
+const appConfig = require('./app.config');
 
 const htmlWebpackPluginConfig = {
   title: appConfig.title,
@@ -35,82 +23,112 @@ const htmlWebpackPluginConfig = {
 if (environment !== 'development') {
   htmlWebpackPluginConfig.excludeChunks = ['dev'];
   htmlWebpackPluginConfig.excludeAssets = [/dev/];
-} else {
-  htmlWebpackPluginConfig.excludeAssets = [/appcss.*.js/, /devcss.*.js/];
 }
 
-const webappManifestPluginConfig = {
-  name: 'Guess the Number',
-  shortName: 'Guess the Number',
-  description: 'A simple guess the number game',
-  dir: 'auto',
-  lang: 'en-US',
-  display: 'standalone',
-  orientation: 'portrait',
-  startUrl: '/',
-  backgroundColor: '#fff',
-  icons: WebappManifestIcon,
-  scope: '/',
+const WebappWebpackPluginConfig = {
+  logo: `./${appConfig.paths.asset.imagesPath}/favicon.png`,
+  cache: 'tmp/.wwp-cache',
+  favicons: {
+    appName: appConfig.title,
+    appDescription: 'A simple two player tic tac toe game',
+    background: '#fff',
+    theme_color: '#fff',
+    dir: 'auto',
+    lang: 'en-US',
+    display: 'standalone',
+    orientation: 'portrait',
+    icons: {
+      android: true,
+      appleIcon: true,
+      appleStartup: true,
+      coast: false,
+      favicons: true,
+      firefox: true,
+      opengraph: false,
+      twitter: false,
+      yandex: false,
+      windows: false,
+    },
+  },
 };
 
 module.exports = {
   context: path.resolve('', `./${appConfig.paths.src.path}`),
   entry: {
     appjs: './javascripts/main.js',
-    appcss: './stylesheets/main.css',
+    // appcss: './stylesheets/main.css',
   },
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins() {
-                  return [
-                    postcssImport({
-                      path: ['node_modules', './src'],
-                    }),
-                    postcssNext,
-                    postcssNested,
-                  ];
-                },
+        use: [
+          environment === 'production' ? MiniCSSExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins() {
+                return [
+                  postcssImport({
+                    path: ['node_modules', './src'],
+                  }),
+                  postcssNext,
+                  postcssNested,
+                ];
               },
             },
-          ],
-          publicPath: `/${appConfig.paths.dist}`,
-        }),
+          },
+        ],
       },
       {
         test: /\.pug$/,
-        use: ['pug-loader'],
+        oneOf: [
+          // this applies to `<template lang="pug">` in Vue components
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader'],
+          },
+          // this applies to pug imports inside JavaScript
+          {
+            use: ['pug-loader'],
+          },
+        ],
       },
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: file => (/node_modules/.test(file) && !/\.vue\.js/.test(file)),
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: `${appConfig.paths.dist.imagesPath}/${appConfig.bundleNames.images}`,
+            },
+          },
+        ],
       },
       {
         test: /\.vue$/,
-        use: 'vue-loader',
+        loader: 'vue-loader',
       },
     ],
   },
   target: 'web',
   plugins: [
-    new CopyWebpackPlugin(copyWebpackPluginPatterns),
     new Webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(environment),
       },
     }),
-    new ExtractTextPlugin(`${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}`),
+    new MiniCSSExtractPlugin({ filename: `${appConfig.paths.dist.stylesheetsPath}/${appConfig.bundleNames.css}` }),
     new HtmlWebpackPlugin(htmlWebpackPluginConfig),
     new HtmlWebpackExcludeAssetsPlugin(),
-    new FaviconWebpackPlugin('../assets/images/favicon.png'),
-    new WebappManifestPlugin(webappManifestPluginConfig),
+    new WebappWebpackPlugin(WebappWebpackPluginConfig),
+    new VueLoaderPlugin(),
   ],
 };

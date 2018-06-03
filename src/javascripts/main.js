@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import '../stylesheets/main.css';
+
 import './vueConfig';
 
 import App from './components/app.vue';

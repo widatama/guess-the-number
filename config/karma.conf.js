@@ -1,16 +1,18 @@
-// we can just use the exact same webpack config by requiring it
-// but make sure to delete the normal entry
 /* eslint import/no-extraneous-dependencies: 0 */
-const webpackConf = require('./webpack.config');
 const karmaChromeLauncher = require('karma-chrome-launcher');
 const karmaTap = require('karma-tap');
 const karmaTapPrettyReporter = require('karma-tap-pretty-reporter');
 const karmaWebpack = require('karma-webpack');
 
+// we can just use the exact same webpack config by requiring it
+// but make sure to delete the normal entry
+const webpackConf = require('./webpack.config');
+
 delete webpackConf.entry;
-webpackConf.node = {
-  fs: 'empty',
-};
+delete webpackConf.plugins;
+
+webpackConf.node = { fs: 'empty' };
+webpackConf.stats = 'none';
 
 module.exports = (config) => {
   config.set({

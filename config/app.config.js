@@ -1,5 +1,13 @@
 // All paths are from app root
 
+function hashOrPlain() {
+  if (process.env.NODE_ENV === 'production') {
+    return '[chunkhash]';
+  }
+
+  return 'bundle';
+}
+
 const config = {
   distPath: 'public',
   srcPath: 'src',
@@ -7,8 +15,8 @@ const config = {
   configPath: 'config',
   title: 'Guess The Number',
   bundleNames: {
-    js: '[name].bundle.js',
-    css: '[name].bundle.css',
+    js: `[name]-${hashOrPlain()}.js`,
+    css: `[name]-${hashOrPlain()}.css`,
     images: '[name].[ext]',
   },
   paths: {
