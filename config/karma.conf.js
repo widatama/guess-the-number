@@ -30,11 +30,11 @@ module.exports = (config) => {
     },
     // entry file for all tests
     files: [
-      '../test/bundle.js',
+      '../src/javascripts/test_entry.js',
     ],
     // pass the entry file to webpack for bundling.
     preprocessors: {
-      '../test/bundle.js': ['webpack'],
+      '../src/javascripts/test_entry.js': ['webpack'],
     },
     client: {
       captureConsole: false,

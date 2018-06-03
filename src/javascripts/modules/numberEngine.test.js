@@ -1,6 +1,6 @@
 import tape from 'tape';
 
-import Engine from '../../../src/javascripts/modules/numberEngine';
+import Engine from './numberEngine';
 
 tape('Number Engine', (test) => {
   test.plan(4);
