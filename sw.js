@@ -1,43 +1,30 @@
-importScripts('workbox-sw.prod.v2.1.2.js');
+/**
+ * Welcome to your Workbox-powered service worker!
+ *
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
+ *
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/2aRDsh
+ */
+
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js");
+
+importScripts(
+  "precache-manifest.dc29969983939af5f333c716da87cdf2.js"
+);
+
+workbox.skipWaiting();
+workbox.clientsClaim();
 
 /**
- * DO NOT EDIT THE FILE MANIFEST ENTRY
- *
- * The method precache() does the following:
- * 1. Cache URLs in the manifest to a local cache.
- * 2. When a network request is made for any of these URLs the response
- *    will ALWAYS comes from the cache, NEVER the network.
- * 3. When the service worker changes ONLY assets with a revision change are
- *    updated, old cache entries are left as is.
- *
- * By changing the file manifest manually, your users may end up not receiving
- * new versions of files because the revision hasn't changed.
- *
- * Please use workbox-build or some other tool / approach to generate the file
- * manifest which accounts for changes to local files and update the revision
- * accordingly.
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
  */
-const fileManifest = [
-  {
-    "url": "assets/javascripts/appcss.bundle.js",
-    "revision": "bef1106846e8f3000d65ea506b8cf3b8"
-  },
-  {
-    "url": "assets/javascripts/appjs.bundle.js",
-    "revision": "6fe252b09d9c452167326d7fcd16c31f"
-  },
-  {
-    "url": "assets/stylesheets/appcss.bundle.css",
-    "revision": "2ccdf7b1d3bd1fac231c54eb572333af"
-  },
-  {
-    "url": "index.html",
-    "revision": "359e36c9b694e2cc936931fc7be33c31"
-  }
-];
-
-const workboxSW = new self.WorkboxSW({
-  "skipWaiting": true,
-  "clientsClaim": true
-});
-workboxSW.precache(fileManifest);
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.suppressWarnings();
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
