@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'v-app-container',
+  name: 'VAppContainer',
 };
 </script>
