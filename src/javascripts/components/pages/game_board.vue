@@ -6,7 +6,7 @@
         | How many digits to guess?
 
       div
-        select.c-select.u-fill(v-model="numberLength", v-on:change="chooseNumberLength($event)")
+        select.c-select.u-fill(v-bind:value="numberLength", v-on:change="chooseNumberLength($event)")
           template(v-for="item in availableNumberLength")
             option(v-bind:value="item") {{item}}
 
@@ -100,8 +100,6 @@ export default {
         this.guessNumber(this.currentGuessInput);
       } else if (event.charCode < 48 || event.charCode > 57 || this.currentGuessInput.length >= this.numberLength || hasCharCode(this.currentGuessInput, event.charCode)) {
         event.preventDefault();
-        
-        
       }
     },
     guessNumber(guessInput) {
@@ -109,6 +107,7 @@ export default {
       this.currentGuessInput = '';
     },
     setupGame() {
+      this.numberLengthInput = Math.min(...this.availableNumberLength);
       this.$store.dispatch('restart');
     },
   },
