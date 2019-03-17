@@ -1,9 +1,11 @@
-/* eslint import/no-extraneous-dependencies: 0 */
 const path = require('path');
 
+/* eslint-disable import/no-extraneous-dependencies */
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const WebpackStylish = require('webpack-stylish');
+/* eslint-enable import/no-extraneous-dependencies */
 
 const webpackConfig = require('./webpack.config');
 const appConfig = require('./app.config');
@@ -30,5 +32,13 @@ webpackConfig.plugins = (webpackConfig.plugins || []).concat([
   new WorkboxPlugin.GenerateSW(WorkboxPluginConfig),
   new WebpackStylish(),
 ]);
+
+webpackConfig.optimization = {
+  minimizer: [
+    new TerserPlugin({
+      extractComments: true,
+    }),
+  ],
+};
 
 module.exports = webpackConfig;
