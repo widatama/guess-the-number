@@ -23,6 +23,6 @@
 }
 
 .c-app-footer {
-  border-top: 1px solid var(--colorGray);
+  border-top: 1px solid var(--colorBase);
   align-self: end;
 }

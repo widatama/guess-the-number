@@ -6,7 +6,7 @@
   font-family: var(--fontFamilyMonospace);
   line-height: var(--lineHeightBase);
   background-color: var(--backgroundColorBase);
-  border: 1px solid var(--colorGray);
+  border: 1px solid var(--colorLink);
   border-radius: 0;
 
   &:focus {
@@ -36,11 +36,11 @@
   cursor: pointer;
   background-color: var(--backgroundColorBase);
   border: 0;
-  border: 1px solid var(--colorGray);
+  border: 1px solid var(--colorLink);
   border-radius: 0;
   outline-width: thin;
 
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   appearance: none;
 
   &:hover {
