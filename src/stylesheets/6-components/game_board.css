@@ -1,19 +1,20 @@
+/* stylelint-disable plugin/no-unsupported-browser-features */
 .c-game-board {
-  height: 100%;
   display: grid;
+  height: 100%;
   grid-template-rows: auto 10%;
 }
 
 .c-game-board-setup {
   display: grid;
   grid-template-columns: 62% 14% auto;
-  grid-column-gap: .25rem;
+  grid-column-gap: 0.25rem;
 }
 
 .c-game-board-guess-input-field {
   display: grid;
   grid-template-columns: 20% 55% auto;
-  grid-column-gap: .25rem;
+  grid-column-gap: 0.25rem;
 }
 
 .c-game-board-finished {

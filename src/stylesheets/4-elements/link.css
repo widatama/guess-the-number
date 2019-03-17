@@ -1,8 +1,9 @@
+/* stylelint-disable selector-max-type */
 a {
-  color: var(--colorLink);
   font-weight: var(--fontWeightBold);
+  color: var(--colorLink);
   text-decoration: none;
-  transition: color .2s ease-in-out;
+  transition: color 0.2s ease-in-out;
 
   &:hover {
     color: var(--colorBase);

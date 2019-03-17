@@ -1,21 +1,21 @@
+/* stylelint-disable selector-max-type */
 html {
-  background-color: var(--backgroundColorBase);
+  height: 100%;
+  min-height: 100%;
+
+  overflow-y: scroll;
 
   font-family: var(--fontFamilyBase);
   font-size: var(--fontSizeBase);
   font-weight: var(--fontWeightBase);
   line-height: var(--lineHeightBase);
 
-  overflow-y: scroll;
-
-  height: 100%;
-  min-height: 100%;
-
   color: var(--colorBase);
+  background-color: var(--backgroundColorBase);
 
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+  /* stylelint-disable plugin/no-unsupported-browser-features */
+  text-size-adjust: 100%;
 }

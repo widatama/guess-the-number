@@ -1,12 +1,13 @@
+/* stylelint-disable plugin/no-unsupported-browser-features */
 .c-input,
 .c-select {
   height: 2rem;
-  border-radius: 0;
-  padding: 0 .5rem;
-  background-color: var(--backgroundColorBase);
-  border: 1px solid var(--colorGray);
+  padding: 0 0.5rem;
   font-family: var(--fontFamilyMonospace);
   line-height: var(--lineHeightBase);
+  background-color: var(--backgroundColorBase);
+  border: 1px solid var(--colorGray);
+  border-radius: 0;
 
   &:focus {
     outline: none;
@@ -14,47 +15,47 @@
 }
 
 .c-select {
-  appearance: none;
-  padding: 0 1.5rem 0 .5rem;
+  padding: 0 1.5rem 0 0.5rem;
+
+  cursor: pointer;
 
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADQSURBVFiF1c+7ccMwFEXBZS0oUqGgzE2+WqzE9li2KOIrkncGAZDg7BIRF3w45/ICJ0XklNJt+b6dDJFTSjdYfr+eBPETzx8Ah0c8xPMEwGER/+JZAXA4xNN4XgA4DGI1ng0AuyNexlMAYDfEZjyFAN6OKIqnAsDbEMXxVAKYjqiKpwHANER1PI0AhiOa4ukAMAzRHE8ngG5EVzwDADQjuuMZBKAaMSSegQCKEcPiGQxgEzE0ngkAVhHD46cuIi4R8fl1rnv3NC0ickTkmX/cAeicgKu/i7a4AAAAAElFTkSuQmCC");
 
   background-repeat: no-repeat;
-  background-position: right .25rem center;
-  background-size: .5rem .35rem;
-
-  cursor: pointer;
+  background-position: right 0.25rem center;
+  background-size: 0.5rem 0.35rem;
+  appearance: none;
 }
 
 .c-button {
   height: 2rem;
-  background-color: var(--backgroundColorBase);
-  appearance: none;
-  padding: 0 .5rem;
-  border-radius: 0;
-  border: none;
-  border: 1px solid var(--colorGray);
-  cursor: pointer;
-  color: var(--colorLink);
-  outline-width: thin;
+  padding: 0 0.5rem;
 
   font-weight: var(--fontWeightBold);
+  color: var(--colorLink);
+  cursor: pointer;
+  background-color: var(--backgroundColorBase);
+  border: 0;
+  border: 1px solid var(--colorGray);
+  border-radius: 0;
+  outline-width: thin;
 
-  transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  appearance: none;
 
   &:hover {
-    background-color: var(--colorLink);
     color: var(--backgroundColorBase);
+    background-color: var(--colorLink);
     border-color: var(--colorLink);
   }
 
   &[disabled] {
     color: var(--colorGray);
     cursor: not-allowed;
-    border: none;
+    border: 0;
     box-shadow: none;
 
-    &:hover{
+    &:hover {
       background-color: var(--backgroundColorBase);
     }
   }
