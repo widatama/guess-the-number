@@ -16,7 +16,7 @@ table.u-fill
 
 <script>
 export default {
-  name: 'v-guess-table',
+  name: 'VGuessTable',
   props: {
     guesses: {
       type: Array,

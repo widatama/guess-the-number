@@ -1,5 +1,5 @@
 import localforage from 'localforage';
-import NumberEngine from '../modules/numberEngine';
+import NumberEngine from "./numberEngine";
 
 const STORAGE_KEY = 'GTN_GAME_STATE';
 const DEFAULT_STATE = {

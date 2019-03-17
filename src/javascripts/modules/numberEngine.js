@@ -5,9 +5,9 @@ function isValidNumber(numberInput) {
   // check valid type
   if (!['number', 'string'].includes(typeof numberInput)) {
     return false;
-  } else if (Number.isNaN(numberInput)) {
+  } if (Number.isNaN(numberInput)) {
     return false;
-  } else if (numberInput.toString().length < 1) {
+  } if (numberInput.toString().length < 1) {
     return false;
   }
 

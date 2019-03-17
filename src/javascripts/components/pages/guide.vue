@@ -1,13 +1,14 @@
 <template lang="pug">
 .c-game-board
   div
+    p This is a very simple guess the number game.
     p
-     | This is a simple guess the number game. You are given&nbsp;
+     |  You are given a hidden&nbsp;
      code n
      |  digits of unique numbers, each digit could have a value of&nbsp;
      code 0–9
      | .
-     strong  Your goal is to guess all the correct digits and their positions
+     strong  Your goal is to guess all the digits and their correct positions
      | .
     p
      | Every time you guess, there will be a response of&nbsp;
@@ -44,7 +45,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'v-guide',
+  name: 'VGuide',
   computed: {
     ...mapState([
       'numberToGuess',

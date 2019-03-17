@@ -9,13 +9,13 @@ import store from './store/index';
 
 global.App = new Vue({
   el: '#vue_app',
-  name: 'guess-the-number',
+  name: 'GuessTheNumber',
   router,
   store,
-  render: h => h(App),
   created() {
     this.$store.dispatch('initialize');
   },
+  render: h => h(App),
 });
 
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in global.navigator) {

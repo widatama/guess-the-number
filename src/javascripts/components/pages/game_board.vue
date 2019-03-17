@@ -56,9 +56,15 @@ function hasCharCode(str, charCode) {
 }
 
 export default {
-  name: 'v-game-board',
+  name: 'VGameBoard',
   components: {
     'v-guess-table': GuessTable,
+  },
+  data() {
+    return {
+      currentGuessInput: '',
+      numberLengthInput: 0,
+    };
   },
   computed: {
     isSettingUp() {
@@ -82,12 +88,6 @@ export default {
       'initialized',
     ]),
   },
-  data: () => {
-    return {
-      currentGuessInput: '',
-      numberLengthInput: 0,
-    };
-  },
   methods: {
     chooseNumberLength(event) {
       this.numberLengthInput = parseInt(event.target.value, 10);
@@ -101,7 +101,7 @@ export default {
       } else if (event.charCode < 48 || event.charCode > 57 || this.currentGuessInput.length >= this.numberLength || hasCharCode(this.currentGuessInput, event.charCode)) {
         event.preventDefault();
         
-        return;
+        
       }
     },
     guessNumber(guessInput) {
