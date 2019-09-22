@@ -8,10 +8,6 @@
   background-color: var(--backgroundColorBase);
   border: 1px solid var(--colorLink);
   border-radius: 0;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 .c-select {
@@ -25,6 +21,10 @@
   background-position: right 0.25rem center;
   background-size: 0.5rem 0.35rem;
   appearance: none;
+}
+
+.c-select:focus {
+  outline: none;
 }
 
 .c-button {
