@@ -31,7 +31,7 @@ tape('Number Engine', test => {
       engine.setNumber();
     };
     const invalidFn1 = () => {
-      engine.setNumber('1a');
+      engine.setNumber('abc');
     };
     const invalidFn2 = () => {
       engine.setNumber('1123');

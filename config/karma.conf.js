@@ -14,24 +14,17 @@ delete webpackConf.plugins;
 webpackConf.node = { fs: 'empty' };
 webpackConf.stats = 'none';
 
-module.exports = (config) => {
+module.exports = config => {
   config.set({
-    plugins: [
-      karmaChromeLauncher,
-      karmaTap,
-      karmaTapPrettyReporter,
-      karmaWebpack,
-    ],
-    browsers: ['ChromeCanary'],
+    plugins: [karmaChromeLauncher, karmaTap, karmaTapPrettyReporter, karmaWebpack],
+    browsers: ['ChromeHeadless'],
     frameworks: ['tap'],
     reporters: ['tap-pretty'],
     tapReporter: {
       prettifier: 'tap-summary',
     },
     // entry file for all tests
-    files: [
-      '../src/javascripts/test_entry.js',
-    ],
+    files: ['../src/javascripts/test_entry.js'],
     // pass the entry file to webpack for bundling.
     preprocessors: {
       '../src/javascripts/test_entry.js': ['webpack'],
@@ -47,4 +40,3 @@ module.exports = (config) => {
     colors: true,
   });
 };
-

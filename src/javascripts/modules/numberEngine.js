@@ -3,11 +3,13 @@ const AVAILABLE_NUMBER_LENGTH = [4, 5, 6, 7, 8];
 
 function isValidNumber(numberInput) {
   // check valid type
-  if (!['number', 'string'].includes(typeof numberInput)) {
+  if (Number.isNaN(parseInt(numberInput, 10))) {
     return false;
-  } if (Number.isNaN(numberInput)) {
+  }
+  if (Number.isNaN(numberInput)) {
     return false;
-  } if (numberInput.toString().length < 1) {
+  }
+  if (numberInput.toString().length < 1) {
     return false;
   }
 
