@@ -1,16 +1,27 @@
-@import "normalize.css";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "1-settings/base.css";
-@import "1-settings/typography.css";
+@layer base {
+  body {
+    font-size: 1.25em;
+  }
+}
 
-@import "4-elements/body.css";
-@import "4-elements/link.css";
-@import "4-elements/page.css";
-@import "4-elements/table.css";
+@screen lg {
+  .wrap {
+    max-width: 35rem;
+  }
+}
 
-@import "6-components/app.css";
-@import "6-components/form.css";
-@import "6-components/game_board.css";
-@import "6-components/navigation.css";
+@screen md {
+  .wrap {
+    width: 92%;
+  }
+}
 
-@import "7-utilities/utilities.css";
+@screen sm {
+  .wrap {
+    width: 92%;
+  }
+}

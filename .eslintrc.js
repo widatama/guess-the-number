@@ -1,47 +1,18 @@
 module.exports = {
-  plugins: ['import'],
+  root: true,
+  env: {
+    node: true,
+  },
   extends: [
-    'airbnb-base',
-    'prettier',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:vue/base',
-    'plugin:vue/essential',
-    'plugin:vue/strongly-recommended',
-    'plugin:vue/recommended'
+    'plugin:vue/vue3-essential',
+    '@vue/airbnb',
+    '@vue/typescript/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 6,
-    parser: 'babel-eslint',
+    ecmaVersion: 2020,
   },
-  env: {
-    browser: true,
-    es6: true,
-  },
-  root: true,
   rules: {
-    'arrow-parens': [
-      'error',
-      'as-needed',
-      {
-        requireForBlockBody: false,
-      },
-    ],
-    'prefer-destructuring': [
-      'error',
-      {
-        object: true,
-        array: false,
-      },
-    ],
-  },
-  settings: {
-    'import/parser': 'babel-eslint',
-    'import/resolver': {
-      node: {
-        paths: ['src/'],
-        extensions: ['.js'],
-      },
-    },
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
 };
