@@ -4,10 +4,11 @@ module.exports = {
   chainWebpack(config) {
     config.entry('app').clear().add('./src/main.js');
     config.plugin('html').tap((args) => {
-      args[0].title = title;
-      args[0].favicon = 'public/favicon.png';
+      const conf = args;
+      conf[0].title = title;
+      conf[0].favicon = 'public/favicon.png';
 
-      return args;
+      return conf;
     });
   },
   devServer: {
@@ -52,5 +53,5 @@ module.exports = {
       msTileImage: 'favicon.png',
     },
   },
-  publicPath: './',
+  publicPath: process.env.NODE_ENV === 'production' ? '/guess-the-number' : './',
 };

@@ -11,17 +11,18 @@ footer
   nav.wrap.my-10.mx-auto
     ul
       li.inline-block.mr-6
-        router-link(to="/")
+        router-link(:to="{ name: 'GameBoard' }")
           template(v-if="numberToGuess.raw")
             | Continue Game
           template(v-else)
             | New Game
       li.inline-block
-        router-link(to="/guide") Guide
+        router-link(:to="{ name: 'Guide' }") Guide
 </template>
 
-<script>
-import { mapState } from 'vuex';
+<script lang="ts">
+import { onMounted } from 'vue';
+import { mapState, useStore } from 'vuex';
 
 export default {
   Name: 'App',
@@ -30,8 +31,12 @@ export default {
       'numberToGuess',
     ]),
   },
-  created() {
-    this.$store.dispatch('initialize');
+  setup() {
+    const store = useStore();
+
+    onMounted(() => {
+      store.dispatch('initialize');
+    });
   },
 };
 </script>
