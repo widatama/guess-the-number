@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.de0e3856c75441b031818e9ec7949e2b.js"
+  "/guess-the-number/precache-manifest.0b25cf5a9f502ee61b85510ff388d7f3.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "guess-the-number"});
