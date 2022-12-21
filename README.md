@@ -1,26 +1,35 @@
-# Guess The Number
+# Vite + Typescript + Vue + Vuex + Tailwind
 
-A single player number guessing  game. The rules are simple, but it is quite challenging for higher digits.
+Template for starting development in Vite with Typescript, Vue, Vuex, and Tailwind.
 
-## Project setup
-```
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so the `tsc` CLI is replaced with `vue-tsc` for type checking.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+### Compile and Hot-Reload for Development
+
+```sh
+npm start
 ```
 
-### Compiles and minifies for production
-```
+### Type-Check, Compile and Minify for Production
+
+```sh
 npm run build
 ```
 
-### Lints and fixes files
-```
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
