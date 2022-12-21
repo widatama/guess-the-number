@@ -1,5 +1,5 @@
 {
-  "name": "vite-ts-vue-vuex-tailwind",
+  "name": "guess-the-number",
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
@@ -9,7 +9,14 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.cjs,.mjs,.ts,.cts,.mts --fix --ignore-path .gitignore"
   },
+  "author": "Danu Widatama",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/widatama/guess-the-number.git"
+  },
   "dependencies": {
+    "localforage": "^1.10.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vuex": "^4.1.0"
