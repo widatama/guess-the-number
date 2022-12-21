@@ -9,9 +9,11 @@ const outDir = resolve(__dirname, 'dist');
 const rootDir = resolve(__dirname, 'src');
 const publicDir = resolve(__dirname, 'public');
 
+const appTitle = 'Guess the Number';
+
 const inject = {
   data: {
-    appTitle: 'App Title',
+    appTitle,
   },
 };
 
