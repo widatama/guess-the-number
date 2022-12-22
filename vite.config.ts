@@ -21,6 +21,7 @@ const inject = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/guess-the-number/',
   build: {
     emptyOutDir: true,
     outDir,

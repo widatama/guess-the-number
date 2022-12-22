@@ -39,7 +39,7 @@ export default defineComponent({
     });
 
     return {
-      numberToGuess: computed(() => store.state.numberToGuess.value),
+      numberToGuess: computed(() => store.state.numberToGuess),
     };
   },
 });
