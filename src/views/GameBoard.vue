@@ -48,14 +48,15 @@
       ) New Game
 
     div(class="mt-12 sm:mt-8")
-      v-guess-table(:guesses="guesses" v-if="guesses.length > 0")
+      GuessTable(:guesses="guesses" v-if="guesses.length > 0")
 </template>
 
-<script>
-import { mapState } from 'vuex';
+<script lang="ts">
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
 import GuessTable from '@/components/GuessTable.vue';
 
-function hasCharCode(str, charCode) {
+function hasCharCode(str: string, charCode: number) {
   const strFromCharCode = String.fromCharCode(charCode);
 
   return str.includes(strFromCharCode);
@@ -64,58 +65,67 @@ function hasCharCode(str, charCode) {
 export default {
   name: 'GameBoard',
   components: {
-    'v-guess-table': GuessTable,
+    GuessTable,
   },
-  data() {
-    return {
-      currentGuessInput: '',
-      numberLengthInput: 0,
-    };
-  },
-  computed: {
-    isSettingUp() {
-      return !this.numberToGuess.raw;
-    },
-    isPlaying() {
-      return this.numberToGuess.raw && !this.guessed;
-    },
-    isFinished() {
-      return this.guessed;
-    },
-    guessInputValid() {
-      return this.currentGuessInput.length === this.numberLength;
-    },
-    ...mapState([
-      'numberToGuess',
-      'numberLength',
-      'availableNumberLength',
-      'guesses',
-      'guessed',
-      'initialized',
-    ]),
-  },
-  methods: {
-    chooseNumberLength(event) {
-      this.numberLengthInput = parseInt(event.target.value, 10);
-    },
-    startGame(chosenNumberLength) {
-      this.$store.dispatch('generateNumber', chosenNumberLength || this.numberLength);
-    },
-    inputNumber(event) {
-      if (event.charCode === 13 && this.currentGuessInput.length === this.numberLength) {
-        this.guessNumber(this.currentGuessInput);
-      } else if (event.charCode < 48 || event.charCode > 57 || this.currentGuessInput.length >= this.numberLength || hasCharCode(this.currentGuessInput, event.charCode)) {
+  setup() {
+    const { dispatch, state } = useStore();
+    const currentGuessInput = ref('');
+    const numberLengthInput = ref(0);
+    const numberLength = computed(() => state.numberLength);
+    const numberToGuess = computed(() => state.numberToGuess);
+    const availableNumberLength = computed(() => state.availableNumberLength);
+    const guessed = computed(() => state.guessed);
+
+    function chooseNumberLength(event: Event) {
+      const target = event.target as HTMLSelectElement;
+      numberLengthInput.value = parseInt(target.value, 10);
+    }
+
+    function startGame(chosenNumberLength: number) {
+      dispatch('generateNumber', chosenNumberLength || numberLength.value);
+    }
+
+    function guessNumber(guessInput: string) {
+      dispatch('guessNumber', guessInput);
+      currentGuessInput.value = '';
+    }
+
+    function inputNumber(event: KeyboardEvent) {
+      const isNotNumeric = event.charCode < 48 || event.charCode > 57;
+      const lengthExceeded = currentGuessInput.value.length >= numberLength.value;
+      const isNotUnique = hasCharCode(currentGuessInput.value, event.charCode);
+
+      if (event.charCode === 13 && currentGuessInput.value.length === numberLength.value) {
+        guessNumber(currentGuessInput.value);
+      } else if (isNotNumeric || lengthExceeded || isNotUnique) {
         event.preventDefault();
       }
-    },
-    guessNumber(guessInput) {
-      this.$store.dispatch('guessNumber', guessInput);
-      this.currentGuessInput = '';
-    },
-    setupGame() {
-      this.numberLengthInput = Math.min(...this.availableNumberLength);
-      this.$store.dispatch('restart');
-    },
+    }
+
+    function setupGame() {
+      numberLengthInput.value = Math.min(...availableNumberLength.value);
+      dispatch('restart');
+    }
+
+    return {
+      currentGuessInput,
+      numberLengthInput,
+      numberLength,
+      numberToGuess,
+      availableNumberLength,
+      guesses: computed(() => state.guesses),
+      guessed,
+      initialized: computed(() => state.initialized),
+      guessInputValid: computed(() => currentGuessInput.value.length === numberLength.value),
+      isSettingUp: computed(() => numberToGuess.value.raw.length < 1),
+      isPlaying: computed(() => numberToGuess.value.raw && !guessed.value),
+      isFinished: computed(() => guessed.value),
+      chooseNumberLength,
+      startGame,
+      guessNumber,
+      inputNumber,
+      setupGame,
+    };
   },
 };
 </script>

@@ -21,9 +21,9 @@ footer
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { computed, defineComponent, onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import { mapState, useStore } from 'vuex';
+import { useStore } from 'vuex';
 
 export default defineComponent({
   name: 'App',
@@ -31,17 +31,16 @@ export default defineComponent({
     RouterLink,
     RouterView,
   },
-  computed: {
-    ...mapState([
-      'numberToGuess',
-    ]),
-  },
   setup() {
     const store = useStore();
 
     onMounted(() => {
       store.dispatch('initialize');
     });
+
+    return {
+      numberToGuess: computed(() => store.state.numberToGuess.value),
+    };
   },
 });
 </script>

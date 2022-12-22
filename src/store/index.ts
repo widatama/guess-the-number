@@ -1,7 +1,9 @@
 import { createStore } from 'vuex';
 
 import GameState from '@/modules/GameState';
+import type { Guess } from '@/modules/GameState';
 import NumberEngine from '@/modules/NumberEngine';
+import type { NumberToGuess } from '@/modules/NumberEngine';
 
 export default createStore({
   state: {
@@ -10,32 +12,49 @@ export default createStore({
   },
   mutations: {
     INITIALIZE(state, initialState) {
+      // eslint-disable-next-line
       state = initialState;
     },
-    UPDATE_VARIABLE(state, { label, value }) {
-      state[label] = value;
+    UPDATE_INITIALIZED(state, value: boolean) {
+      state.initialized = value;
     },
-    ADD_GUESS(state, newGuess) {
-      state.guesses.unshift(newGuess);
+    UPDATE_NUMBERLENGTH(state, value: number) {
+      state.numberLength = value;
+    },
+    UPDATE_NUMBERTOGUESS(state, value: NumberToGuess) {
+      state.numberToGuess = value;
+    },
+    UPDATE_GUESSED(state, value: boolean) {
+      state.guessed = value;
+    },
+    UPDATE_GUESSES(state, value: Guess[]) {
+      state.guesses = value;
+    },
+    ADD_GUESS(state, newGuess: Guess) {
+      state.guesses.unshift(newGuess as never);
     },
   },
   actions: {
     initialize({ commit }) {
-      GameState.init().then(initialState => {
+      GameState.init().then((initialState) => {
         commit('INITIALIZE', initialState);
-        commit('UPDATE_VARIABLE', { label: 'initialized', value: true });
+        commit('UPDATE_INITIALIZED', true);
       });
     },
     generateNumber({ commit }, chosenNumberLength) {
       const numberObj = new NumberEngine();
       numberObj.generateNumber(chosenNumberLength);
 
-      commit('UPDATE_VARIABLE', { label: 'numberLength', value: chosenNumberLength });
-      commit('UPDATE_VARIABLE', { label: 'numberToGuess', value: numberObj.numberToGuess });
+      commit('UPDATE_NUMBERLENGTH', chosenNumberLength);
+      commit('UPDATE_NUMBERTOGUESS', numberObj.numberToGuess);
     },
     guessNumber({ commit, state }, guessInput) {
       const numberObj = new NumberEngine();
-      const guessObj = {};
+      const guessObj: Guess = {
+        guessInput: '',
+        correctNumber: 0,
+        correctPosition: 0,
+      };
 
       guessObj.guessInput = guessInput;
 
@@ -49,10 +68,10 @@ export default createStore({
       commit('ADD_GUESS', guessObj);
 
       if (
-        guessObj.correctNumber === state.numberLength &&
-        guessObj.correctPosition === state.numberLength
+        guessObj.correctNumber === state.numberLength
+        && guessObj.correctPosition === state.numberLength
       ) {
-        commit('UPDATE_VARIABLE', { label: 'guessed', value: true });
+        commit('UPDATE_GUESSED', true);
       }
     },
     restart({ commit, state }) {
@@ -60,9 +79,9 @@ export default createStore({
         label: 'numberLength',
         value: Math.min(...state.availableNumberLength),
       });
-      commit('UPDATE_VARIABLE', { label: 'guessed', value: false });
-      commit('UPDATE_VARIABLE', { label: 'guesses', value: [] });
-      commit('UPDATE_VARIABLE', { label: 'numberToGuess', value: {} });
+      commit('UPDATE_GUESSED', false);
+      commit('UPDATE_GUESSES', []);
+      commit('UPDATE_NUMBERTOGUESS', { raw: '', structured: {} });
     },
   },
 });

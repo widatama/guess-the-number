@@ -7,13 +7,13 @@ table.w-full.font-mono
       th.text-right Position
 
   tbody
-    tr(v-for="guess in guessesToShow")
+    tr(v-for="guess in guesses")
       td.pt-2 {{guess.guessInput}}
       td.text-right.pt-2 {{guess.correctNumber}}
       td.text-right.pt-2 {{guess.correctPosition}}
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'GuessTable',
   props: {
@@ -21,11 +21,6 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  computed: {
-    guessesToShow() {
-      return this.guesses;
-    }
   },
 };
 </script>

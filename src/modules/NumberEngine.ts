@@ -1,7 +1,12 @@
 const DEFAULT_NUMBER_LENGTH = 4;
 const AVAILABLE_NUMBER_LENGTH = [4, 5, 6, 7, 8];
 
-function isValidNumber(numberInput) {
+export type NumberToGuess = {
+  raw: string;
+  structured: { [key: string]: number };
+};
+
+function isValidNumber(numberInput: string) {
   // check valid type
   if (Number.isNaN(parseInt(numberInput, 10))) {
     return false;
@@ -29,8 +34,8 @@ function randomNumberBetweenInterval(min = 0, max = 9) {
 
 function generateRandomNumber(numberLengthInput = 1) {
   const numberArr = [];
-  const numberStructure = {};
-  const outputNumber = {};
+  const numberStructure: { [key: string]: number } = {};
+  const outputNumber: NumberToGuess = { raw: '', structured: {} };
   let numberCount = 0;
 
   while (numberArr.length < numberLengthInput) {
@@ -38,7 +43,7 @@ function generateRandomNumber(numberLengthInput = 1) {
 
     if (numberStructure[randomNumber] === undefined) {
       numberArr.push(randomNumber);
-      numberStructure[randomNumber] = numberCount;
+      numberStructure[randomNumber.toString()] = numberCount;
 
       numberCount += 1;
     }
@@ -50,8 +55,8 @@ function generateRandomNumber(numberLengthInput = 1) {
   return outputNumber;
 }
 
-function structurizeNumber(numberInput) {
-  const structuredNumber = {};
+function structurizeNumber(numberInput: string) {
+  const structuredNumber: { [key: string]: number } = {};
 
   for (let idx = 0; idx < numberInput.length; idx += 1) {
     structuredNumber[numberInput[idx]] = idx;
@@ -61,8 +66,12 @@ function structurizeNumber(numberInput) {
 }
 
 class NumberEngine {
+  numberToGuess: NumberToGuess;
+
+  numberLength: number;
+
   constructor() {
-    this.numberToGuess = {};
+    this.numberToGuess = { raw: '', structured: {} };
     this.numberLength = DEFAULT_NUMBER_LENGTH;
   }
 
