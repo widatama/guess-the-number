@@ -1,6 +1,7 @@
 <template lang="pug">
 .wrap.mx-auto
-  p.leading-normal.mb-4 This is a very simple number guessing game.
+  p.leading-normal.mb-4 This is a very simple number guessing game. Think of it as Wordle with
+   |  numbers.
   p.leading-normal.mb-4
    |  Some hidden&nbsp;
    code n
@@ -29,7 +30,7 @@
      | .
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'GameGuide',
 };

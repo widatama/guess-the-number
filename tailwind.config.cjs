@@ -1,6 +1,13 @@
+// eslint-disable-next-line
+const tailwindForms = require('@tailwindcss/forms');
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: ['./src/**/*.{html,js,vue,ts}'],
   mode: 'jit',
-  purge: ['./public/*.html', './src/**/*.{vue,js,ts}'],
+  plugins: [
+    tailwindForms,
+  ],
   theme: {
     colors: {
       black: '#333333',
@@ -16,7 +23,4 @@ module.exports = {
     extend: {
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
 };
