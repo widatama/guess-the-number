@@ -1,4 +1,4 @@
-const DEFAULT_NUMBER_LENGTH = 4;
+export const DEFAULT_NUMBER_LENGTH = 4;
 const AVAILABLE_NUMBER_LENGTH = [4, 5, 6, 7, 8];
 
 export type NumberToGuess = {
