@@ -1,6 +1,6 @@
-# Vite + Typescript + Vue + Vuex + Tailwind
+# Guess The Number
 
-Template for starting development in Vite with Typescript, Vue, Vuex, and Tailwind.
+A single player number guessing  game. Think of it as Wordle with numbers.
 
 ## Type Support for `.vue` Imports in TS
 
