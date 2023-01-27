@@ -1,5 +1,5 @@
 <template lang="pug">
-table.w-full.font-mono
+table.w-full.font-mono(v-if="guesses.length > 0")
   thead.border-b.border-gray
     tr
       th.text-left Guess
@@ -8,9 +8,9 @@ table.w-full.font-mono
 
   tbody
     tr(v-for="guess in guesses")
-      td.pt-2 {{guess.guessInput}}
-      td.text-right.pt-2 {{guess.correctNumber}}
-      td.text-right.pt-2 {{guess.correctPosition}}
+      td.pt-2(data-test="guessInput") {{guess.guessInput}}
+      td.text-right.pt-2(data-test="correctNumber") {{guess.correctNumber}}
+      td.text-right.pt-2(data-test="correctPosition") {{guess.correctPosition}}
 </template>
 
 <script lang="ts">

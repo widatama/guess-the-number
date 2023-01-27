@@ -48,7 +48,7 @@
       ) New Game
 
     div(class="mt-12 sm:mt-8")
-      GuessTable(:guesses="guesses" v-if="guesses.length > 0")
+      GuessTable(:guesses="guesses")
 </template>
 
 <script lang="ts">

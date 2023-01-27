@@ -82,6 +82,7 @@ export default defineConfig({
     port: 4000,
   },
   test: {
+    environment: 'happy-dom',
     // Because vite root is modified, need to point this to test directory
     include: ['../test/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}'],
     reporters: 'dot',
