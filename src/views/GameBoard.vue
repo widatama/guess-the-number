@@ -1,20 +1,10 @@
 <template lang="pug">
 .wrap.mx-auto(v-if="initialized")
-  .flex.flex-row.items-center(v-if="isSettingUp")
-    .flex-grow(class="sm:text-sm") How many digits to guess?
-
-    div.mr-2
-      select.bg-black.border.border-white.py-1.text-base(
-        :value="numberLength"
-        @change="chooseNumberLength($event)"
-        class="focus:border-white"
-      )
-        option(v-for="item in availableNumberLength" :value="item" :key="item") {{item}}
-
-    button.border.border-white.uppercase.px-3.py-1.text-base.transition-all.duration-400(
-      @click="startGame(numberLengthInput)"
-      class="hover:bg-white hover:text-black"
-    ) Start
+  SettingForm(
+    v-if="isSettingUp"
+    :availableNumberLength="availableNumberLength"
+    @submit="handleSettingFormSubmit"
+  )
 
   template(v-else)
     .flex.flex-row.items-center(v-if="isPlaying")
@@ -54,7 +44,9 @@
 <script lang="ts">
 import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
+
 import GuessTable from '@/components/GuessTable.vue';
+import SettingForm from '@/components/SettingForm.vue';
 
 function hasCharCode(str: string, charCode: number) {
   const strFromCharCode = String.fromCharCode(charCode);
@@ -66,24 +58,15 @@ export default {
   name: 'GameBoard',
   components: {
     GuessTable,
+    SettingForm,
   },
   setup() {
     const { dispatch, state } = useStore();
     const currentGuessInput = ref('');
-    const numberLengthInput = ref(0);
     const numberLength = computed(() => state.numberLength);
     const numberToGuess = computed(() => state.numberToGuess);
     const availableNumberLength = computed(() => state.availableNumberLength);
     const guessed = computed(() => state.guessed);
-
-    function chooseNumberLength(event: Event) {
-      const target = event.target as HTMLSelectElement;
-      numberLengthInput.value = parseInt(target.value, 10);
-    }
-
-    function startGame(chosenNumberLength: number) {
-      dispatch('generateNumber', chosenNumberLength || numberLength.value);
-    }
 
     function guessNumber(guessInput: string) {
       dispatch('guessNumber', guessInput);
@@ -103,13 +86,15 @@ export default {
     }
 
     function setupGame() {
-      numberLengthInput.value = Math.min(...availableNumberLength.value);
       dispatch('restart');
+    }
+
+    function handleSettingFormSubmit(choosenNumberLength: number) {
+      dispatch('generateNumber', choosenNumberLength);
     }
 
     return {
       currentGuessInput,
-      numberLengthInput,
       numberLength,
       numberToGuess,
       availableNumberLength,
@@ -120,11 +105,10 @@ export default {
       isSettingUp: computed(() => numberToGuess.value.raw.length < 1),
       isPlaying: computed(() => numberToGuess.value.raw && !guessed.value),
       isFinished: computed(() => guessed.value),
-      chooseNumberLength,
-      startGame,
       guessNumber,
       inputNumber,
       setupGame,
+      handleSettingFormSubmit,
     };
   },
 };

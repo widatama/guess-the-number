@@ -75,10 +75,7 @@ export default createStore({
       }
     },
     restart({ commit, state }) {
-      commit('UPDATE_VARIABLE', {
-        label: 'numberLength',
-        value: Math.min(...state.availableNumberLength),
-      });
+      commit('UPDATE_NUMBERLENGTH', Math.min(...state.availableNumberLength));
       commit('UPDATE_GUESSED', false);
       commit('UPDATE_GUESSES', []);
       commit('UPDATE_NUMBERTOGUESS', { raw: '', structured: {} });
