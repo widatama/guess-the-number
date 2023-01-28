@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils';
 import SettingForm from '@/components/SettingForm.vue';
 
 describe('Zero condition', () => {
-  test('Renders a select box', () => {
+  test('Renders a select box and a button', () => {
     const wrapper = mount(SettingForm);
 
     expect(wrapper.find('select')).toBeTruthy();
@@ -25,7 +25,7 @@ describe('With prop', () => {
   });
 });
 
-describe('Emits event', () => {
+describe('Submit event', () => {
   test('Emits submit event when button is clicked', async () => {
     const availableNumberLength = [4, 5, 6];
     const wrapper = mount(SettingForm, {
