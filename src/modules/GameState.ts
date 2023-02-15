@@ -6,6 +6,7 @@ export type Guess = {
   guessInput: string;
   correctNumber: number;
   correctPosition: number;
+  id?: number;
 };
 
 const STORAGE_KEY = 'GTN_GAME_STATE';

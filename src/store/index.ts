@@ -54,6 +54,7 @@ export default createStore({
         guessInput: '',
         correctNumber: 0,
         correctPosition: 0,
+        id: new Date().valueOf(),
       };
 
       guessObj.guessInput = guessInput;

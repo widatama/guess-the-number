@@ -5,7 +5,9 @@ header
   ) Guess The Number
 
 .flex-grow
-  RouterView
+  RouterView(v-slot="{ Component }")
+    Transition(name="tr-fade" mode="out-in")
+      component(:is="Component")
 
 footer
   nav.wrap.my-10.mx-auto

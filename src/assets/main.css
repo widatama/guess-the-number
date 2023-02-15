@@ -2,6 +2,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@import './animation.css';
+
 @layer base {
   body {
     font-size: 1.25em;

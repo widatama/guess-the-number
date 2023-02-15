@@ -1,0 +1,21 @@
+.tr-fade-enter-active,
+.tr-fade-leave-active {
+  @apply transition-opacity duration-200 ease-linear;
+}
+
+.tr-fade-enter-from,
+.tr-fade-leave-to {
+  @apply opacity-0;
+}
+
+.trg-slide-move,
+.trg-slide-enter-active,
+.trg-slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.trg-slide-enter-from,
+.trg-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-40px);
+}

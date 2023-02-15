@@ -1,34 +1,36 @@
 <template lang="pug">
 .wrap.mx-auto(v-if="initialized")
-  SettingForm(
-    v-if="isSettingUp"
-    :availableNumberLength="availableNumberLength"
-    @submit="handleSettingFormSubmit"
-  )
-
-  template(v-else)
-    GuessForm(
-      v-if="isPlaying"
-      :numberLength="numberLength"
-      @submit="handleGuessFormSubmit"
+  Transition(name="tr-fade" mode="out-in")
+    SettingForm(
+      v-if="isSettingUp"
+      :availableNumberLength="availableNumberLength"
+      @submit="handleSettingFormSubmit"
     )
 
-    .flex.flex-row.items-center.justify-between(v-if="isFinished")
-      div
-        | Completed!
-        | &nbsp;{{guesses.length}}&nbsp;
-        template(v-if="guesses.length === 1")
-          | Guess
-        template(v-else)
-          | Guesses
+    div(v-else)
+      Transition(name="tr-fade" mode="out-in")
+        GuessForm(
+          v-if="isPlaying"
+          :numberLength="numberLength"
+          @submit="handleGuessFormSubmit"
+        )
 
-      button.border.border-white.uppercase.px-3.py-1.text-base.transition-all.duration-400(
-        @click="handleNewGameClick"
-        class="hover:bg-white hover:text-black"
-      ) New Game
+        .flex.flex-row.items-center.justify-between(v-else-if="isFinished")
+          div
+            | Completed!
+            | &nbsp;{{guesses.length}}&nbsp;
+            template(v-if="guesses.length === 1")
+              | Guess
+            template(v-else)
+              | Guesses
 
-    div(class="mt-12 sm:mt-8")
-      GuessTable(:guesses="guesses")
+          button.border.border-white.uppercase.px-3.py-1.text-base.transition-all.duration-400(
+            @click="handleNewGameClick"
+            class="hover:bg-white hover:text-black"
+          ) New Game
+
+      div(class="mt-12 sm:mt-8")
+        GuessTable(:guesses="guesses")
 </template>
 
 <script lang="ts">
