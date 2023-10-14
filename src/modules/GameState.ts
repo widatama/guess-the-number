@@ -26,11 +26,11 @@ const DEFAULT_STATE: {
 
 class GameState {
   static default() {
-    return DEFAULT_STATE;
+    return structuredClone(DEFAULT_STATE);
   }
 
   static init() {
-    const state = DEFAULT_STATE;
+    const state = structuredClone(DEFAULT_STATE);
 
     return localforage.getItem(STORAGE_KEY).then((value) => {
       if (value) {

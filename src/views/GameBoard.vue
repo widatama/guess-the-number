@@ -34,9 +34,10 @@
 </template>
 
 <script lang="ts">
+import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import { useStore } from 'vuex';
 
+import useMainStore from '@/stores/main';
 import GuessForm from '@/components/GuessForm.vue';
 import GuessTable from '@/components/GuessTable.vue';
 import SettingForm from '@/components/SettingForm.vue';
@@ -49,31 +50,32 @@ export default {
     SettingForm,
   },
   setup() {
-    const { dispatch, state } = useStore();
-    const numberLength = computed(() => state.numberLength);
-    const numberToGuess = computed(() => state.numberToGuess);
-    const availableNumberLength = computed(() => state.availableNumberLength);
-    const guessed = computed(() => state.guessed);
+    const store = useMainStore();
+    const { initialized, state } = storeToRefs(store);
+    const numberLength = computed(() => state.value.numberLength);
+    const numberToGuess = computed(() => state.value.numberToGuess);
+    const availableNumberLength = computed(() => state.value.availableNumberLength);
+    const guessed = computed(() => state.value.guessed);
 
     function handleGuessFormSubmit(guessInput: string) {
-      dispatch('guessNumber', guessInput);
+      store.guessNumber(guessInput);
     }
 
     function handleSettingFormSubmit(choosenNumberLength: number) {
-      dispatch('generateNumber', choosenNumberLength);
+      store.generateNumber(choosenNumberLength);
     }
 
-    function handleNewGameClick() {
-      dispatch('restart');
+    async function handleNewGameClick() {
+      await store.reset();
     }
 
     return {
       numberLength,
       numberToGuess,
       availableNumberLength,
-      guesses: computed(() => state.guesses),
+      guesses: computed(() => state.value.guesses),
       guessed,
-      initialized: computed(() => state.initialized),
+      initialized: computed(() => initialized.value),
       isSettingUp: computed(() => numberToGuess.value.raw.length < 1),
       isPlaying: computed(() => numberToGuess.value.raw && !guessed.value),
       isFinished: computed(() => guessed.value),

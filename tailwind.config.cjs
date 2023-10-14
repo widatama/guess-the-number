@@ -1,3 +1,4 @@
+/* eslint-env node */
 // eslint-disable-next-line
 const tailwindForms = require('@tailwindcss/forms');
 

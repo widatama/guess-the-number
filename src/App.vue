@@ -23,9 +23,11 @@ footer
 </template>
 
 <script lang="ts">
+import { storeToRefs } from 'pinia';
 import { computed, defineComponent, onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import { useStore } from 'vuex';
+
+import useMainStore from '@/stores/main';
 
 export default defineComponent({
   name: 'App',
@@ -34,14 +36,15 @@ export default defineComponent({
     RouterView,
   },
   setup() {
-    const store = useStore();
+    const store = useMainStore();
+    const { state } = storeToRefs(store);
 
-    onMounted(() => {
-      store.dispatch('initialize');
+    onMounted(async () => {
+      await store.initialize();
     });
 
     return {
-      numberToGuess: computed(() => store.state.numberToGuess),
+      numberToGuess: computed(() => state.value.numberToGuess),
     };
   },
 });
