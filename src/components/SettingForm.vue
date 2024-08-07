@@ -30,6 +30,7 @@ export default defineComponent({
       default() { return [4]; },
     },
   },
+  emits: ['submit'],
   setup(props, { emit }) {
     const { availableNumberLength } = toRefs(props);
     const numberLength = ref(availableNumberLength.value[0]);

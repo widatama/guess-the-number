@@ -50,7 +50,7 @@ describe('Submit event', () => {
     await wrapper.find('select').setValue(availableNumberLength[1]);
     await wrapper.find('button').trigger('click');
 
-    // @ts-ignore
+    // @ts-expect-error no need to check if wrapper.emitted is empty -_-
     expect(wrapper.emitted('submit')[0][0]).toBe(availableNumberLength[1]);
   });
 });

@@ -35,7 +35,7 @@ describe('Submit event', () => {
     await wrapper.find('input').setValue('1');
     await wrapper.find('button').trigger('click');
 
-    // @ts-ignore
+    // @ts-expect-error no need to check if wrapper.emitted is empty -_-
     expect(wrapper.emitted('submit')[0][0]).toBe('1');
     expect(wrapper.find('button').attributes('disabled')).toBeFalsy();
   });

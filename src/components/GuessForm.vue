@@ -38,6 +38,7 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ['submit'],
   setup(props, { emit }) {
     const { numberLength } = toRefs(props);
     const guessInput = ref('');
