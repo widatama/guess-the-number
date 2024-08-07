@@ -12,7 +12,7 @@ const gitignoreFilePath = path.resolve(__dirname, '.gitignore');
 
 // styling related rules, so code formatter is not needed
 const styleConfig = {
- jsx: false, semi: true, arrowParens: true, braceStyle: '1tbs',
+  jsx: false, semi: true, arrowParens: true, braceStyle: '1tbs',
 };
 const eslintStyleJS = stylistic.configs.customize({ ...styleConfig, ts: false });
 const eslintStyleTS = stylistic.configs.customize(styleConfig);
