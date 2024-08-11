@@ -78,6 +78,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  esbuild: {
+    legalComments: 'none',
+  },
   root: rootDir,
   server: {
     port: 4000,
