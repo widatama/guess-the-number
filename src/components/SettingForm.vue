@@ -1,6 +1,6 @@
 <template lang="pug">
 form.flex.flex-row.items-center(@submit="handleClickOrSubmit")
-  .flex-grow(class="sm:text-sm") How many digits to guess?
+  .grow(class="sm:text-sm") How many digits to guess?
 
   div.mr-2
     select.bg-black.border.border-white.py-1.text-base(
@@ -9,7 +9,7 @@ form.flex.flex-row.items-center(@submit="handleClickOrSubmit")
     )
       option(v-for="item in availableNumberLength" :value="item" :key="item") {{item}}
 
-  button.border.border-white.uppercase.px-3.py-1.text-base.transition-all.duration-400(
+  button.border.border-white.cursor-pointer.uppercase.px-3.py-1.text-base.transition-all.duration-400(
     @click="handleClickOrSubmit"
     class="hover:bg-white hover:text-black"
   ) Start

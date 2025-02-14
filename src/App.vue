@@ -4,7 +4,7 @@ header
     class="sm:mt-6 sm:mb-10 my-20"
   ) Guess The Number
 
-.flex-grow
+.grow
   RouterView(v-slot="{ Component }")
     Transition(name="tr-fade" mode="out-in")
       component(:is="Component")

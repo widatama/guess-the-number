@@ -1,10 +1,9 @@
 /* eslint-env node */
 module.exports = {
   plugins: {
-    tailwindcss: {},
+    '@tailwindcss/postcss': {},
     'postcss-import': {
       path: ['./node_modules', './src'],
     },
-    autoprefixer: {},
   },
 };

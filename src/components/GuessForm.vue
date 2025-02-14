@@ -2,7 +2,7 @@
 form.flex.flex-row.items-center(@submit="handleClickOrSubmit")
   div(class="w-3/12 sm:text-sm" data-test="text") {{numberLength}} Digits
 
-  .flex-grow.mr-2
+  .grow.mr-2
     input.w-full.bg-black.border.border-white.px-2.py-1.text-base(
       placeholder="Type some numbers…"
       v-model="guessInput"
@@ -46,6 +46,7 @@ export default defineComponent({
     const buttonClasses = computed(() => ({
       'hover:bg-white hover:text-black': guessInputLengthValid.value,
       'cursor-not-allowed': !guessInputLengthValid.value,
+      'cursor-pointer': guessInputLengthValid.value,
     }));
 
     function handleClickOrSubmit(event: Event) {

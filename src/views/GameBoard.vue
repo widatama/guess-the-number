@@ -24,7 +24,7 @@
             template(v-else)
               | Guesses
 
-          button.border.border-white.uppercase.px-3.py-1.text-base.transition-all.duration-400(
+          button.border.border-white.cursor-pointer.uppercase.px-3.py-1.text-base.transition-all.duration-400(
             @click="handleNewGameClick"
             class="hover:bg-white hover:text-black"
           ) New Game
