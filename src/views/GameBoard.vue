@@ -1,5 +1,5 @@
 <template lang="pug">
-.wrap.mx-auto(v-if="initialized")
+div(class="wrap mx-auto" v-if="initialized")
   Transition(name="tr-fade" mode="out-in")
     SettingForm(
       v-if="isSettingUp"
@@ -15,7 +15,7 @@
           @submit="handleGuessFormSubmit"
         )
 
-        .flex.flex-row.items-center.justify-between(v-else-if="isFinished")
+        div(class="flex flex-row items-center justify-between" v-else-if="isFinished")
           div
             | Completed!
             | &nbsp;{{guesses.length}}&nbsp;
@@ -24,9 +24,9 @@
             template(v-else)
               | Guesses
 
-          button.border.border-white.cursor-pointer.uppercase.px-3.py-1.text-base.transition-all.duration-400(
+          button(
             @click="handleNewGameClick"
-            class="hover:bg-white hover:text-black"
+            class="border border-white cursor-pointer uppercase px-3 py-1 text-base transition-all duration-400 hover:bg-white hover:text-black"
           ) New Game
 
       div(class="mt-12 sm:mt-8")

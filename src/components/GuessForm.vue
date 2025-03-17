@@ -1,17 +1,19 @@
 <template lang="pug">
-form.flex.flex-row.items-center(@submit="handleClickOrSubmit")
+form(class="flex flex-row items-center" @submit="handleClickOrSubmit")
   div(class="w-3/12 sm:text-sm" data-test="text") {{numberLength}} Digits
 
-  .grow.mr-2
-    input.w-full.bg-black.border.border-white.px-2.py-1.text-base(
+  div(class="grow mr-2")
+    input(
+      class="w-full bg-black border border-white px-2 py-1 text-base"
       placeholder="Type some numbers…"
       v-model="guessInput"
       @keypress="handleKeypress($event)"
     )
 
-  button.border.border-white.uppercase.px-3.py-1.text-base.transition-all.duration-400(
+  button(
     :disabled="!guessInputLengthValid"
     @click="handleClickOrSubmit"
+    class="border border-white uppercase px-3 py-1 text-base transition-all duration-400"
     :class="buttonClasses"
   ) Submit
 </template>

@@ -5,7 +5,7 @@ const tailwindForms = require('@tailwindcss/forms');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,vue,ts}'],
-  mode: 'jit',
+  // mode: 'jit',
   plugins: [
     tailwindForms,
   ],
