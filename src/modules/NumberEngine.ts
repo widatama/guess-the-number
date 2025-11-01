@@ -59,7 +59,7 @@ function structurizeNumber(numberInput: string) {
   const structuredNumber: { [key: string]: number } = {};
 
   for (let idx = 0; idx < numberInput.length; idx += 1) {
-    structuredNumber[numberInput[idx]] = idx;
+    structuredNumber[numberInput[idx] as string] = idx;
   }
 
   return structuredNumber;
@@ -114,7 +114,7 @@ class NumberEngine {
     let correctPosition = 0;
 
     for (let idx = 0; idx < inputToProcess.length; idx += 1) {
-      const guessing = this.numberToGuess.structured[inputToProcess[idx]];
+      const guessing = this.numberToGuess.structured[inputToProcess[idx] as string];
 
       if (typeof guessing !== 'undefined') {
         correctNumber += 1;
