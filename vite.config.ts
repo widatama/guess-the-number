@@ -8,9 +8,9 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import vue from '@vitejs/plugin-vue';
 
-const outDir = resolve(__dirname, 'dist');
-const rootDir = resolve(__dirname, 'src');
-const publicDir = resolve(__dirname, 'public');
+const outDir = resolve(import.meta.dirname, 'dist');
+const rootDir = resolve(import.meta.dirname, 'src');
+const publicDir = resolve(import.meta.dirname, 'public');
 
 const appTitle = 'Guess the Number';
 
@@ -77,9 +77,6 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-  },
-  esbuild: {
-    legalComments: 'none',
   },
   root: rootDir,
   server: {
