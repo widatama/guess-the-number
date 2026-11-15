@@ -8,7 +8,6 @@ tmp/
 .env.local
 .env.*.local
 *.log*
-.eslintcache
 
 # Editor directories and files
 .idea/
