@@ -1,5 +1,3 @@
-/* global node */
-
 const tailwindForms = require('@tailwindcss/forms');
 
 /** @type {import('tailwindcss').Config} */
