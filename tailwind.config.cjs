@@ -1,14 +1,12 @@
 /* global node */
- 
+
 const tailwindForms = require('@tailwindcss/forms');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,vue,ts}'],
   // mode: 'jit',
-  plugins: [
-    tailwindForms,
-  ],
+  plugins: [tailwindForms],
   theme: {
     colors: {
       black: '#333333',
@@ -21,7 +19,6 @@ module.exports = {
       md: { max: '1200px' },
       lg: { min: '1201px' },
     },
-    extend: {
-    },
+    extend: {},
   },
 };

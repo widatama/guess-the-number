@@ -1,8 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "vue"
-  ],
+  "plugins": ["vue"],
   "categories": {
     "correctness": "error"
   },
@@ -53,9 +51,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.config.{ts|cjs}"
-      ],
+      "files": ["**/*.config.{ts|cjs}"],
       "rules": {
         "constructor-super": "error",
         "for-direction": "error",
@@ -124,11 +120,7 @@
       }
     },
     {
-      "files": [
-        "**/*.ts",
-        "**/*.cts",
-        "**/*.mts"
-      ],
+      "files": ["**/*.ts", "**/*.cts", "**/*.mts"],
       "rules": {
         "constructor-super": "off",
         "for-direction": "error",
@@ -217,14 +209,10 @@
       "env": {
         "es2026": true
       },
-      "plugins": [
-        "typescript"
-      ]
+      "plugins": ["typescript"]
     },
     {
-      "files": [
-        "**/*.vue"
-      ],
+      "files": ["**/*.vue"],
       "rules": {
         "constructor-super": "off",
         "for-direction": "error",
@@ -310,9 +298,7 @@
         "typescript/prefer-namespace-keyword": "error",
         "typescript/triple-slash-reference": "error"
       },
-      "plugins": [
-        "typescript"
-      ]
+      "plugins": ["typescript"]
     }
   ]
 }

@@ -16,18 +16,16 @@ form(class="flex flex-row items-center" @submit="handleClickOrSubmit")
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  toRefs,
-} from 'vue';
+import { defineComponent, ref, toRefs } from 'vue';
 
 export default defineComponent({
   name: 'SettingForm',
   props: {
     availableNumberLength: {
       type: Array,
-      default() { return [4]; },
+      default() {
+        return [4];
+      },
     },
   },
   emits: ['submit'],

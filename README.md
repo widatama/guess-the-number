@@ -1,6 +1,6 @@
 # Guess The Number
 
-A single player number guessing  game. Think of it as Wordle with numbers.
+A single player number guessing game. Think of it as Wordle with numbers.
 
 ## Type Support for `.vue` Imports in TS
 

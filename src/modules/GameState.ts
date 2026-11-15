@@ -42,9 +42,9 @@ class GameState {
   }
 
   // static storagePlugin(store) {
-    // store.subscribe((mutation, state) => {
-      // localforage.setItem(STORAGE_KEY, state);
-    // });
+  // store.subscribe((mutation, state) => {
+  // localforage.setItem(STORAGE_KEY, state);
+  // });
   // }
 }
 

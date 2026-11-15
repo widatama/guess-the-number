@@ -19,12 +19,7 @@ form(class="flex flex-row items-center" @submit="handleClickOrSubmit")
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  ref,
-  toRefs,
-} from 'vue';
+import { computed, defineComponent, ref, toRefs } from 'vue';
 
 function hasCharCode(str: string, charCode: number) {
   const strFromCharCode = String.fromCharCode(charCode);
